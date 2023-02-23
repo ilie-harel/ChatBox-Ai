@@ -1,0 +1,55 @@
+.Main {
+    width: 75%;
+    height: 85%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+
+.LogoutBtnDiv{
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    cursor: pointer;
+    border: 2px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+}
+  
+  /* .LogoutBtnDiv .tooltip_logout {
+    visibility: hidden ;
+    width: 100px;
+    background-color: rgba(126, 126, 126, 0.76);
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+  
+    position: absolute;
+    bottom: 50px;
+    z-index: 1;
+    transition: 0.2s;
+  }
+  
+  .LogoutBtnDiv:hover .tooltip_logout {
+    visibility: visible;
+    transition: 0.2s;
+} */
+
+
+.LogoutBtnDiv .not_hover {
+    display: none;
+}
+
+.LogoutBtnDiv:hover .hover {
+    display: none;
+}
+
+.LogoutBtnDiv:hover .not_hover {
+    display: block;
+}

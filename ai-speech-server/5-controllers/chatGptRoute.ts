@@ -1,0 +1,26 @@
+import express from 'express'
+import { getDetailsFromToken } from '../1-dal/jwt';
+import { translateToEn, translateToUserLanguage } from '../1-dal/translate';
+import { getMessageFromChatGPTandSave } from '../3-logic/chatGptLogic';
+import { saveUserMessages } from '../3-logic/userLogic';
+
+export const ChatGptRoute = express.Router();
+
+ChatGptRoute.post('/message', async (req, res) => {
+    const message = req.body.message;
+    const token = req.headers.authorization;
+
+    try {
+        const { sub, language } = await getDetailsFromToken(token);
+        const translatedTextEnglish = await translateToEn(message);
+        const chatGptResults = await getMessageFromChatGPTandSave(translatedTextEnglish, sub);
+        const translatedTextByUserLanguage = await translateToUserLanguage(chatGptResults, language);
+
+        res.status(200).json(translatedTextByUserLanguage);
+        await saveUserMessages(translatedTextEnglish, sub);
+    } catch (e) {
+        res.status(401).json(e)
+    }
+})
+
+

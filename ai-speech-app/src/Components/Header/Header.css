@@ -1,0 +1,21 @@
+
+.Header{
+    width: 100%;
+    /* height: 90px; */
+    height: 10%;
+}
+
+.Header_Container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 70%;
+    margin: 0 auto;
+    font-family: 'Dhurjati';
+    font-size: 22px;
+}
+
+#logo_header {
+    width: 100px;
+    height: 100px;
+}

@@ -1,0 +1,149 @@
+.Login_Container {
+    padding-top: 50px !important;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.Login_Container .Login {
+    display: flex;
+    width: 58%;
+    margin: auto;
+    height: 70vh;
+}
+
+.Login_Container .Login>div {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 0 40px 40px 0;
+    box-shadow: -9px -1px 11px -6px rgba(0, 0, 0, 0.6);
+    -webkit-box-shadow: -9px -1px 11px -6px rgba(0, 0, 0, 0.6);
+    -moz-box-shadow: -9px -1px 11px -6px rgba(0, 0, 0, 0.6);
+}
+
+.Login_Container .Login>div form {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Login_Container .Login>div form input {
+    border: none;
+    outline: 1px solid #b9b9b9;
+    border-radius: 2px;
+    padding: 15px;
+    margin-bottom: 30px;
+    width: 80%;
+    font-size: 16px;
+}
+
+.Login_Container .Login>div form .logo_login_form {
+    width: 85%;
+}
+
+.Login_Container .Login>div form .logo_login_form img {
+    width: 250px;
+}
+
+.Login_Container .Login>div form .signIn_text_form {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 30px;
+    margin-top: 10px;
+}
+
+.Login_Container .Login>div form button {
+    width: 80%;
+    padding: 15px;
+    border: none;
+    background-color: #2e2e2e;
+    color: white;
+    font-weight: 750;
+    border-radius: 6px;
+    cursor: pointer;
+    box-shadow: 0px 5px 13px -4px rgba(46, 46, 46, 0.75);
+    -webkit-box-shadow: 0px 5px 13px -4px rgba(46, 46, 46, 0.75);
+    -moz-box-shadow: 0px 5px 13px -4px rgba(46, 46, 46, 0.75);
+}
+
+.Login_Container .Login>div form button:hover {
+    transition: 0.2s;
+    background-color: #121212;
+    box-shadow: 0px 5px 7px -1px rgba(102, 102, 102, 0.75);
+    -webkit-box-shadow: 0px 5px 7px -1px rgba(102, 102, 102, 0.75);
+    -moz-box-shadow: 0px 5px 7px -1px rgba(102, 102, 102, 0.75);
+}
+
+.Login_Container .Login>div form .link_to_register_in_login_form {
+    margin-top: 40px;
+    text-decoration: none;
+    color: #1c1c1c;
+}
+
+.Login_Container .Login>div form .link_to_register_in_login_form:hover {
+    text-decoration: underline;
+}
+
+.Login_Container .Login>div form .terms_login_form {
+    margin-top: 60px;
+    color: gray;
+    font-size: 12px;
+}
+
+.Login_Container .Login .vacation_image_login {
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.Login_Container .Login .vacation_image_login img {
+    border-radius: 40px 0 0 40px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+
+.typewriter {
+    overflow: hidden;
+    /* Ensures the content is not revealed until the animation */
+    border-right: .15em solid orange;
+    /* The typwriter cursor */
+    white-space: nowrap;
+    /* Keeps the content on a single line */
+    margin: 0 auto;
+    /* Gives that scrolling effect as the typing happens */
+    letter-spacing: .1em;
+    /* Adjust as needed */
+    animation:
+        typing 4s steps(40, end),
+        blink-caret .75s step-end infinite;
+}
+
+/* The typing effect */
+@keyframes typing {
+    from {
+        width: 0
+    }
+
+    to {
+        width: 50%
+    }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+
+    from,
+    to {
+        border-color: transparent
+    }
+
+    50% {
+        border-color: orange;
+    }
+}
+
