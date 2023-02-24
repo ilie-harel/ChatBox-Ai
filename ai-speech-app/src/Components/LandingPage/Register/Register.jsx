@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { loginRedux } from '../../../app/authSlice';
 import { toastsFunctions } from '../../../helpers/toastsFunctions';
 import img from "../../LandingPage/ai8.jpg"
+import { TypeAnimation } from 'react-type-animation';
 
 export default function Register() {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -35,7 +36,13 @@ export default function Register() {
                 </div>
                 <div className="form_container">
                     <form onSubmit={handleSubmit(userRegister)}>
-                        <p className="signUp_text_form typewriter">Sign up for FREE</p>
+                        {/* <p className="signUp_text_form typewriter">Sign up for FREE</p> */}
+                        <TypeAnimation
+                            sequence={['Sign up for FREE']}
+                            wrapper="h3"
+                            cursor={true}
+                            speed={50}
+                        />
                         <input placeholder="First name" type="text"  {...register("firstName", { required: true })} />
                         <input placeholder="Last name" type="text" {...register("lastName", { required: true })} />
                         <input placeholder='Username' type="text" {...register('username')} />

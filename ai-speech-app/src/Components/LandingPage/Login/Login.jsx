@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { loginRedux } from '../../../app/authSlice';
 import { toastsFunctions } from '../../../helpers/toastsFunctions';
 import img from "../../LandingPage/ai8.jpg"
+import { TypeAnimation } from 'react-type-animation';
 
 export default function Login() {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -37,7 +38,13 @@ export default function Login() {
                     <form onSubmit={handleSubmit(loginUser)}>
                         <div className="logo_login_form">
                         </div>
-                        <p className="signIn_text_form typewriter">Sign into your account</p>
+                        {/* <p className="signIn_text_form typewriter">Sign into your account</p> */}
+                        <TypeAnimation
+                            sequence={['Sign into your account']}
+                            wrapper="h3"
+                            cursor={true}
+                            speed={50}
+                        />
                         <input placeholder="Username" type="username" {...register("username", { required: true })} />
                         <input placeholder="Password" type="password" {...register("password", { required: true, minLength: 4 })} />
                         <button type="submit" >LOGIN</button>
