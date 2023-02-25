@@ -23,6 +23,9 @@ class ApiService {
     // messages
 
     sendMessageToChatGPT(message) {
+
+
+        console.log(message);
         const token = getToken()
         const results = fetch(`http://localhost:3046/message`, {
             method: 'POST',
@@ -51,18 +54,69 @@ class ApiService {
         return results;
     }
 
+    async getMessagesByUserIdAndRoomId(roomId) {
+        const token = getToken()
+        const results = fetch(`http://localhost:3046/message/room/${roomId}`, {
+            method: 'GET',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json',
+                'authorization': `Bearer ${token}`,
+                'accept-charset': 'utf-8'
+            },
+        })
+        return await (await results).json()
+        // return results
+    }
+
     // voices
 
-    async getVoicesFromGoogle(){
-        const results = await fetch('https://texttospeech.googleapis.com/v1/voices?key=',{
+    async getVoicesFromGoogle() {
+        const results = await fetch('https://texttospeech.googleapis.com/v1/voices?key=', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
             },
         })
-        const {voices} = await results.json()
+        const { voices } = await results.json()
         return voices;
     }
+
+
+    // rooms
+
+    async getRoomsByUserId() {
+        const token = getToken()
+        const results = await fetch('http://localhost:3046/rooms', {
+            method: 'GET',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json',
+                'authorization': `Bearer ${token}`,
+                'accept-charset': 'utf-8'
+            },
+        })
+        const data = await results.json()
+        return data
+    }
+
+    async addRoom() {
+        const token = getToken()
+        const results = await fetch('http://localhost:3046/rooms/add', {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json',
+                'authorization': `Bearer ${token}`,
+                'accept-charset': 'utf-8'
+            },
+        })
+        const data = await results.json()
+        console.log(data[0]);
+        return data[0]
+    }
+
+
 }
 
 export const apiService = new ApiService()

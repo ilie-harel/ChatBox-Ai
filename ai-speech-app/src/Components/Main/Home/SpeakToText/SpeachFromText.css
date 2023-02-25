@@ -1,6 +1,8 @@
 .SpeachFromText {
-    width: 100%;
+    width: 80%;
     height: 100%;
+
+    /* background-color: red; */
 }
 
 .directionHe {
@@ -31,7 +33,8 @@
     height: 80%;
     display: flex;
     justify-content: space-between;
-    gap: 50px;
+    box-sizing: border-box;
+    padding: 10px;
 }
 
 .chat {
