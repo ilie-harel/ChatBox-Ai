@@ -10,39 +10,14 @@ export async function getAllUsers() {
 
 export async function register(user: UserModel) {
     const { firstName, lastName, username, email, password, language } = user;
-
     const checkIfEmailExistsQuery = `SELECT * FROM users WHERE email = ?`
     const [checkIfEmailExistsResults] = await execute<OkPacket>(checkIfEmailExistsQuery, [email]);
     console.log(checkIfEmailExistsResults.length);
     if (checkIfEmailExistsResults.length > 0) {
         return 'Email already exists';
     }
-
     const query = 'INSERT INTO users(firstName,lastName,username,email,password,language) VALUES(?,?,?,?,?,?)'
     const results = await execute<OkPacket>(query, [firstName, lastName, username, email, password, language]);
     user.id = results[0].insertId
-    return results;
-}
-
-export async function saveUserMessages(message: string, id: string, roomId: number) {
-    const timeStamp = new Date().getTime()
-    const query = 'INSERT INTO messages(message,role,timestamp,userId,roomId) VALUES(?,?,?,?,?)'
-    await execute<OkPacket>(query, [message, 1, timeStamp, id, roomId]);
-}
-
-export async function getMessagesByUser(id: string): Promise<any> {
-    const query = `SELECT * FROM ai.messages WHERE userId = ? and role = 0 ORDER BY timestamp DESC LIMIT 1`
-    const [results]: any = await execute<OkPacket>(query, [id]);
-    console.log(results);
-    return results;
-}
-
-
-export async function getMessagesByRoomAndUserId(roomId: number, userId: number): Promise<any> {    
-    const query = `SELECT * FROM ai.messages WHERE roomId = ? AND userId = ? ORDER BY timestamp DESC`;
-    const [results]: any = await execute<OkPacket>(query, [roomId, userId]);
-    console.log('getMessagesByRoomAndUserId');
-    console.log(results);
-    
     return results;
 }

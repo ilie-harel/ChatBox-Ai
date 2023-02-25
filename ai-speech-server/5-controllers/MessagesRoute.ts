@@ -1,7 +1,8 @@
 import express from 'express'
 import { getDetailsFromToken } from '../1-dal/jwt';
 import { translateToUserLanguage } from '../1-dal/translate';
-import { getMessagesByRoomAndUserId, getMessagesByUser } from '../3-logic/userLogic';
+import { getMessagesByRoomAndUserId, getMessagesByUser } from '../3-logic/messagesLogic';
+
 export const MessagesRoute = express.Router();
 
 MessagesRoute.get('/message', async (req, res) => {

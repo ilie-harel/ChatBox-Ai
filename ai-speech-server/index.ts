@@ -6,6 +6,7 @@ import * as dotenv from 'dotenv'
 import { UserRoute } from './5-controllers/usersRoute';
 import { RoomsRoute } from './5-controllers/roomsRoute';
 dotenv.config()
+
 const app = express();
 
 app.use(express.json());

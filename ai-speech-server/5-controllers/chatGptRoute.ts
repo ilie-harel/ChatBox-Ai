@@ -2,7 +2,7 @@ import express from 'express'
 import { getDetailsFromToken } from '../1-dal/jwt';
 import { translateToEn, translateToUserLanguage } from '../1-dal/translate';
 import { getMessageFromChatGPTandSave } from '../3-logic/chatGptLogic';
-import { saveUserMessages } from '../3-logic/userLogic';
+import { saveUserMessages } from '../3-logic/messagesLogic';
 
 export const ChatGptRoute = express.Router();
 
