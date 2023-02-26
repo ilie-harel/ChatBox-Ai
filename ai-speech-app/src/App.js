@@ -15,7 +15,7 @@ function App() {
   }, [authSlice])
   return (
     <div className="App">
-      <Header />
+      {/* <Header /> */}
       <Routes>
 
         {
