@@ -1,108 +1,118 @@
 .Rooms {
-    width: 250px;
+    width: 300px;
     height: 100%;
-    background-color: #ccc;
-    /* position: relative; */
+    background-color: #585a5c;
+    /* background-color: #b7b7b7; */
+    color: #fff;
+    font-family: 'Arial', sans-serif;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    font-family: 'Dhurjati';
-}
-
-.RoomsDiv{
+    box-sizing: border-box;
+    padding: 20px;
+    /* border: 2px solid #343a40; */
+  }
+  
+  .RoomsDiv {
     width: 100%;
     height: 80%;
     overflow-y: auto;
-    /* background-color: purple; */
-    
-
-}
-.room {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .room {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    height: 40px;
+    margin: 5px 0;
+    padding: 5px 10px;
+    font-size: 14px;
+    text-align: center;
     border: none;
-    outline: 1px solid lightgray;
-    background-color: rgb(196, 196, 196);
+    border-radius: 5px;
+    background-color: #878787;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .room:hover, .room.selected {
+    background-color: #f29f05;
+  }
+  
+  .AddBtnDiv {
+    height: 40px;
+    width: 100%;
+    border: 2px solid #f29f05;
     border-radius: 5px;
     display: flex;
+    justify-content: center;
     align-items: center;
-    padding: 0 5px;
-    margin: 10px 5px;
-    direction: rtl;
-    height: 50px;
-    margin-bottom: 4px;
-}
-.room:hover {
-    background-color: rgb(168, 168, 168);
     cursor: pointer;
-}
-.AddBtnDiv {
-    height: 8%;
-    /* position: absolute; */
-    width: 95%;
-    /* top: 5px;
-    left: 5px; */
-    cursor: pointer;
-    border: 2px solid black;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .AddBtnDiv:hover {
+    background-color: #f29f05;
+  }
+  
+  .AddBtnDiv .not_hover {
+    display: none;
+  }
+  
+  .AddBtnDiv:hover .hover {
+    display: none;
+  }
+  
+  .AddBtnDiv:hover .not_hover {
+    display: block;
+  }
+  
+  .LogoutBtnDiv {
+    height: 40px;
+    width: 100%;
+    border: 2px solid #f29f05;
+    border-radius: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
-    /* padding: 10px 0; */
-    border-radius: 10px;
-}
-
-.LogoutBtnDiv {
-    height: 8%;
-    /* position: absolute; */
-    width: 95%;
-    /* bottom: 5px;
-    left: 5px; */
     cursor: pointer;
-    border: 2px solid black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* padding: 10px 0; */
-    border-radius: 10px;
-}
-
-
-.LogoutBtnDiv .not_hover {
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .LogoutBtnDiv:hover {
+    background-color: #f29f05;
+  }
+  
+  .LogoutBtnDiv .not_hover {
     display: none;
-}
-
-.LogoutBtnDiv:hover .hover {
+  }
+  
+  .LogoutBtnDiv:hover .hover {
     display: none;
-}
-
-.LogoutBtnDiv:hover .not_hover {
+  }
+  
+  .LogoutBtnDiv:hover .not_hover {
     display: block;
-}
-
-.AddBtnDiv .not_hover {
-    display: none;
-}
-
-.AddBtnDiv:hover .hover {
-    display: none;
-}
-
-.AddBtnDiv:hover .not_hover {
-    display: block;
-}
-
-
-
-::-webkit-scrollbar {
+  }
+  
+  ::-webkit-scrollbar {
     width: 10px;
   }
   
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    background: #717171;
+    background: #f29f05;
     border-radius: 30px;
   }
   
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
-    background: #4d4d4d;
+    background: #5d5d5d;
   }
+  

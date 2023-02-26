@@ -21,7 +21,7 @@ const authSlice = createSlice({
         },
 
         logoutRedux: (state) => {
-            window.localStorage.removeItem(`ChatBoxToken`);
+            window.localStorage.removeItem('ChatBoxToken');
             return null;
         },
     }

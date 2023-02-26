@@ -1,34 +1,7 @@
 .Main {
     width: 100%;
-    height: 85%;
+    height: 90%;
     margin: 0 auto;
     display: flex;
     position: relative;
 }
-
-
-/* .LogoutBtnDiv{
-    position: absolute;
-    bottom: 0px;
-    right: 0px;
-    cursor: pointer;
-    border: 2px solid black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-    border-radius: 10px;
-}
-
-
-.LogoutBtnDiv .not_hover {
-    display: none;
-}
-
-.LogoutBtnDiv:hover .hover {
-    display: none;
-}
-
-.LogoutBtnDiv:hover .not_hover {
-    display: block;
-} */

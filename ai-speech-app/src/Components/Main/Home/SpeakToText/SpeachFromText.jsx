@@ -10,7 +10,7 @@ import DataObjectIcon from '@mui/icons-material/DataObject';
 import { useDispatch, useSelector } from "react-redux";
 import { TypeAnimation } from 'react-type-animation';
 import './SpeachFromText.css'
-import { changeRoomId } from "../../../../app/roomSlice";
+import { changeRoomId, changeRoomName } from "../../../../app/roomSlice";
 
 function SpeechFromText() {
     const { transcript, listening, resetTranscript, finalTranscript, browserSupportsSpeechRecognition } = useSpeechRecognition();
@@ -18,7 +18,7 @@ function SpeechFromText() {
     const authSlice = useSelector((state) => state.auth);
     const [loading, setLoading] = useState(false);
     const dispatch = useDispatch()
-    const activeRoomId = useSelector((state) => state.room)
+    const roomSlice = useSelector((state) => state.room)
 
     useEffect(() => {
         if (!browserSupportsSpeechRecognition) {
@@ -34,17 +34,18 @@ function SpeechFromText() {
     }, [finalTranscript, listening]);
 
     useEffect(() => {
-        if (activeRoomId !== 0) {
+        if (roomSlice.id !== 0) {
             setMessages([])
-            apiService.getMessagesByUserIdAndRoomId(activeRoomId).then(res => setMessages(res));
+            apiService.getMessagesByUserIdAndRoomId(roomSlice.id).then(res => setMessages(res));
 
         }
-    }, [activeRoomId])
+        console.log(roomSlice.id);
+    }, [roomSlice])
 
 
 
     async function startListening() {
-        if (activeRoomId === 0) {
+        if (roomSlice.id === 0) {
             const addRoom = await apiService.addRoom();
             dispatch(changeRoomId(addRoom.insertId))
         }
@@ -57,18 +58,23 @@ function SpeechFromText() {
         setMessages(messages => [...messages, { role: 1, message: finalTranscript }])
         SpeechRecognition.stopListening()
 
-        if (activeRoomId) {
-            const res = await apiService.sendMessageToChatGPT({ message: transcript, room: activeRoomId });
+        if (roomSlice.id) {
+            const res = await apiService.sendMessageToChatGPT({ message: transcript, room: roomSlice.id });
             if (res.status !== 200) {
                 alert('error')
             } else {
                 const reply = await res.json();
                 speakText(reply)
                 resetTranscript();
-                const mes = await apiService.getMessagesByUserIdAndRoomId(activeRoomId);
-                console.log(mes);
-                setMessages(messages => [...messages, mes[0+1]])
-                apiService.updateRoomName(mes[0].message, activeRoomId)
+                try {
+                    const mes = await apiService.getMessagesByUserIdAndRoomId(roomSlice.id);
+                    console.log(mes);
+                    setMessages(messages => [...messages, mes[0 + 1]])
+                    apiService.updateRoomName(mes[0].message, roomSlice.id);
+                    dispatch(changeRoomName(mes[0].message))
+                } catch (e) {
+                    alert(e)
+                }
             }
         } else {
             console.log('No roomId');
@@ -79,14 +85,9 @@ function SpeechFromText() {
 
     return (
         <div className={authSlice.language === 'he' ? "SpeachFromText directionHe" : "SpeachFromText directionEn"}>
-
-            <div className="SpeachFromTextMicrophone">
-
-            </div>
-
             <div className="chatDiv">
                 <div className="chat">
-                    {activeRoomId == 0 ? 'Choose a room or start talking to create new one' :
+                    {roomSlice.id == 0 ? 'Choose a room or start talking to create new one' :
                         messages.map((m, index) => {
                             const isLast = index === messages.length - 1;
                             const className = isLast ? 'textChat lastMessage' : 'textChat';

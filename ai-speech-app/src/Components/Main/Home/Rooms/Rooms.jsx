@@ -14,26 +14,30 @@ import { changeRoomId } from "../../../../app/roomSlice";
 export default function Rooms() {
     const dispatch = useDispatch()
     const [rooms, setRooms] = useState([])
-    const activeRoomId = useSelector((state)=> state.room);
+    const roomSlice = useSelector((state) => state.room);
+    const [selectedRoomId, setSelectedRoomId] = useState(null);
 
     useEffect(() => {
         apiService.getRoomsByUserId().then(async (res) => {
             setRooms(res)
         })
-        console.log(activeRoomId);
-    }, [activeRoomId])
+        console.log(roomSlice);
+    }, [roomSlice])
 
     function logOut() {
         dispatch(loginRedux())
     }
 
     async function addRoom() {
-        await apiService.addRoom();
-        apiService.getRoomsByUserId().then((res) => {
-            setRooms((rooms) => [res, ...rooms])
-        })
-
+        const newRoom = await apiService.addRoom();
+        dispatch(changeRoomId(newRoom.insertId));
+        setRooms((rooms) => [newRoom, ...rooms]);
     }
+
+    function handleRoomClick(roomId) {
+        setSelectedRoomId(roomId);
+        dispatch(changeRoomId(roomId));
+      }
 
     return (
         <div className='Rooms'>
@@ -42,23 +46,17 @@ export default function Rooms() {
                 <AddCircleOutlinedIcon className='not_hover' />
             </div>
 
-            <div className='RoomsDiv'>
+            <div className="RoomsDiv">
+                {rooms.map((room, index) => (
 
-
-
-                {/* map.roomes => 
-                p = room.name
-                
-            */}
-
-                {rooms ?
-                    rooms.map((room, index) => (
-                        <p onClick={() => dispatch(changeRoomId(room.id))} 
-                        className='room' key={index}>{room.name ?? "New Chat"}
-                        </p>
-                    ))
-                    : <></>}
-
+                    <p
+                        key={index}
+                        className={`room ${room.id === selectedRoomId ? "selected" : ""}`}
+                        onClick={() => handleRoomClick(room.id)}
+                    >
+                        {room.name ?? "New Chat"}
+                    </p>
+                ))}
             </div>
 
             <div onClick={logOut} className="LogoutBtnDiv">
