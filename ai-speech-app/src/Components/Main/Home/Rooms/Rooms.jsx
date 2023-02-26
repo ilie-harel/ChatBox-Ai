@@ -18,7 +18,6 @@ export default function Rooms() {
 
     useEffect(() => {
         apiService.getRoomsByUserId().then(async (res) => {
-            console.log(res);
             setRooms(res)
         })
         console.log(activeRoomId);

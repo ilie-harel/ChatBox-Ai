@@ -40,19 +40,19 @@ class ApiService {
         return results;
     }
 
-    getMessagesByUser() {
-        const token = getToken()
-        const results = fetch(`http://localhost:3046/message`, {
-            method: 'GET',
-            mode: 'cors',
-            headers: {
-                'Content-Type': 'application/json',
-                'authorization': `Bearer ${token}`,
-                'accept-charset': 'utf-8'
-            },
-        })
-        return results;
-    }
+    // getMessagesByUser() {
+    //     const token = getToken()
+    //     const results = fetch(`http://localhost:3046/message`, {
+    //         method: 'GET',
+    //         mode: 'cors',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             'authorization': `Bearer ${token}`,
+    //             'accept-charset': 'utf-8'
+    //         },
+    //     })
+    //     return results;
+    // }
 
     async getMessagesByUserIdAndRoomId(roomId) {
         const token = getToken()
@@ -65,8 +65,7 @@ class ApiService {
                 'accept-charset': 'utf-8'
             },
         })
-        return await (await results).json()
-        // return results
+        return await (await results).json();
     }
 
     // voices
@@ -112,11 +111,18 @@ class ApiService {
             },
         })
         const data = await results.json()
-        console.log(data[0]);
         return data[0]
     }
 
-
+    async updateRoomName(name, roomId) {
+        const token = getToken()
+        const results = axios.post(`http://localhost:3046/rooms/edit/${roomId}?name=${name}`,{
+            headers:{
+                'authorization': `Bearer ${token}`,
+            }
+        })
+        return results;
+    }
 }
 
 export const apiService = new ApiService()

@@ -10,8 +10,6 @@ export const UserRoute = express.Router();
 UserRoute.post('/users/register', async (req, res) => {
     const user: UserModel = req.body;
     user.password = hashedPassword(user.password)
-    console.log(user);
-
     try {
         const results = await register(user)
         if (results === 'Email already exists') {
@@ -27,8 +25,6 @@ UserRoute.post('/users/register', async (req, res) => {
 })
 
 UserRoute.post('/users/login', async (req, res) => {
-    console.log(req.body);
-
     const username = req.body.username;
     const password = req.body.password;
     const users = await getAllUsers();

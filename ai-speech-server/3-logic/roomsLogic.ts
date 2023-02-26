@@ -12,3 +12,9 @@ export async function getRoomsByUserId(userId:number){
     const [results] = await execute<OkPacket>(query,[userId]);
     return results;
 }
+
+export async function updateRoomNameByRoomId(name:string,roomId:number){
+    const query = 'UPDATE rooms SET name = ? WHERE id = ?'
+    const results = await execute<OkPacket>(query,[name,roomId]);
+    return results;
+}

@@ -34,20 +34,19 @@ function SpeechFromText() {
     }, [finalTranscript, listening]);
 
     useEffect(() => {
-        console.log(activeRoomId);
         if (activeRoomId !== 0) {
-            const roomMessages = apiService.getMessagesByUserIdAndRoomId(activeRoomId).then(res => setMessages(res));
-            console.log(roomMessages);
+            setMessages([])
+            apiService.getMessagesByUserIdAndRoomId(activeRoomId).then(res => setMessages(res));
+
         }
-        console.log(1231231233123);
-        console.log(messages);
     }, [activeRoomId])
+
+
 
     async function startListening() {
         if (activeRoomId === 0) {
             const addRoom = await apiService.addRoom();
             dispatch(changeRoomId(addRoom.insertId))
-            console.log(activeRoomId);
         }
         await SpeechRecognition.startListening({ language: authSlice.language });
     }
@@ -66,14 +65,14 @@ function SpeechFromText() {
                 const reply = await res.json();
                 speakText(reply)
                 resetTranscript();
-                const mes = await apiService.getMessagesByUser().then((res) => res.json());
+                const mes = await apiService.getMessagesByUserIdAndRoomId(activeRoomId);
                 console.log(mes);
-                setMessages(messages => [...messages, mes[0]])
+                setMessages(messages => [...messages, mes[0+1]])
+                apiService.updateRoomName(mes[0].message, activeRoomId)
             }
         } else {
-            console.log('NO ROOMiD');
+            console.log('No roomId');
         }
-
         setLoading(false)
     }
 
@@ -82,12 +81,12 @@ function SpeechFromText() {
         <div className={authSlice.language === 'he' ? "SpeachFromText directionHe" : "SpeachFromText directionEn"}>
 
             <div className="SpeachFromTextMicrophone">
-                {/* <p className="Label">Speak naturally, we'll do the typing</p> */}
+
             </div>
 
             <div className="chatDiv">
                 <div className="chat">
-                    {messages.length === 0 ? 'no messages' :
+                    {activeRoomId == 0 ? 'Choose a room or start talking to create new one' :
                         messages.map((m, index) => {
                             const isLast = index === messages.length - 1;
                             const className = isLast ? 'textChat lastMessage' : 'textChat';
