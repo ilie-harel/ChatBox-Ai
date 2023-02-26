@@ -1,6 +1,6 @@
 import express from 'express';
 import { getDetailsFromToken } from '../1-dal/jwt';
-import { addRoom, getRoomsByUserId, updateRoomNameByRoomId } from '../3-logic/roomsLogic';
+import { addRoom, deleteRoomByRoomId, getRoomsByUserId, updateRoomNameByRoomId } from '../3-logic/roomsLogic';
 
 export const RoomsRoute = express.Router();
 
@@ -21,6 +21,17 @@ RoomsRoute.post('/rooms/add', async (req, res) => {
         const token = req.headers.authorization;
         const { sub } = await getDetailsFromToken(token);
         const results = await addRoom(sub);
+        res.status(200).json(results);
+    } catch (e) {
+        res.status(401).json(e)
+    }
+})
+
+RoomsRoute.delete('/rooms/delete/:id', async (req, res) => {
+    try {
+        const roomId = req.params.id;
+        // const { sub } = await getDetailsFromToken(token);
+        const results = await deleteRoomByRoomId(+roomId);
         res.status(200).json(results);
     } catch (e) {
         res.status(401).json(e)

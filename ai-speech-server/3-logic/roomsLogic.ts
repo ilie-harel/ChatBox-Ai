@@ -18,3 +18,12 @@ export async function updateRoomNameByRoomId(name:string,roomId:number){
     const results = await execute<OkPacket>(query,[name,roomId]);
     return results;
 }
+
+export async function deleteRoomByRoomId(roomId:number){
+    
+    const query = 'DELETE FROM rooms WHERE id = ?'
+    const results = await execute<OkPacket>(query,[roomId]);
+    console.log(results);
+    
+    return results;
+}

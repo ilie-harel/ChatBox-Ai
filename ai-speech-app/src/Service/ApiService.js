@@ -123,6 +123,22 @@ class ApiService {
         })
         return results;
     }
+
+    async deleteRoom(roomId){
+        const token = getToken()
+        const results = await fetch(`http://localhost:3046/rooms/delete/${roomId}`, {
+            method: 'DELETE',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json',
+                'authorization': `Bearer ${token}`,
+                'accept-charset': 'utf-8'
+            },
+        })
+        console.log(results);
+        // const data = await results.json()
+        // return data[0]
+    }
 }
 
 export const apiService = new ApiService()

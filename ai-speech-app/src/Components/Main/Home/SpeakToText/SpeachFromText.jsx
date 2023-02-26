@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
 import { apiService } from "../../../../Service/ApiService";
 import speakText from '../../../../helpers/speak'
@@ -19,6 +19,7 @@ function SpeechFromText() {
     const [loading, setLoading] = useState(false);
     const dispatch = useDispatch()
     const roomSlice = useSelector((state) => state.room)
+    const bottomRef = useRef(null);
 
     useEffect(() => {
         if (!browserSupportsSpeechRecognition) {
@@ -34,17 +35,24 @@ function SpeechFromText() {
     }, [finalTranscript, listening]);
 
     useEffect(() => {
+        
+        
         if (roomSlice.id !== 0) {
             setMessages([])
-            apiService.getMessagesByUserIdAndRoomId(roomSlice.id).then(res => setMessages(res));
-
+            apiService.getMessagesByUserIdAndRoomId(roomSlice.id).then(res => setMessages(res)).then(() => {
+                setTimeout(() => {
+                    
+                    bottomRef.current?.scrollIntoView({behavior: 'smooth'});
+                }, 1);
+            });
         }
+        
         console.log(roomSlice.id);
     }, [roomSlice])
+    
 
 
-
-    async function startListening() {
+        async function startListening() {
         if (roomSlice.id === 0) {
             const addRoom = await apiService.addRoom();
             dispatch(changeRoomId(addRoom.insertId))
@@ -70,6 +78,7 @@ function SpeechFromText() {
                     const mes = await apiService.getMessagesByUserIdAndRoomId(roomSlice.id);
                     console.log(mes);
                     setMessages(messages => [...messages, mes[0 + 1]])
+                    
                     apiService.updateRoomName(mes[0].message, roomSlice.id);
                     dispatch(changeRoomName(mes[0].message))
                 } catch (e) {
@@ -106,6 +115,7 @@ function SpeechFromText() {
                                                 :
                                                 <p onClick={(e) => speakText(e.target.innerText)}>{m.message}</p>
                                             }
+                                        <div ref={bottomRef} />
                                         </div>
                                         :
                                         <div key={index} className={className}>
@@ -122,6 +132,7 @@ function SpeechFromText() {
                                             }
                                         </div>
                                     }
+
                                 </div>
                             );
                         })}

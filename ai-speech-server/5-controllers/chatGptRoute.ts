@@ -15,11 +15,11 @@ ChatGptRoute.post('/message', async (req, res) => {
         const { sub, language } = await getDetailsFromToken(token);
         const translatedTextEnglish = await translateToEn(message);
 
+        await saveUserMessages(translatedTextEnglish, sub, room);
         const chatGptResults = await getMessageFromChatGPTandSave(translatedTextEnglish, sub, room);
         const translatedTextByUserLanguage = await translateToUserLanguage(chatGptResults, language);
 
         res.status(200).json(translatedTextByUserLanguage);
-        await saveUserMessages(translatedTextEnglish, sub, room);
     } catch (e) {
         res.status(401).json(e)
     }

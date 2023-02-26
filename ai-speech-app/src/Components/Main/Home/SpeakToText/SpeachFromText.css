@@ -36,6 +36,10 @@
     overflow: auto;
     box-sizing: border-box;
     padding: 100px;
+    display: flex;
+    height: 80%;
+    margin: auto auto;
+    flex-direction: column;
 
 }
 
