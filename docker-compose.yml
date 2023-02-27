@@ -1,0 +1,23 @@
+volumes:
+  ai-speech-db-data:
+  
+services:
+  chatbox-server:
+    image: chatbox-server
+    ports:
+      - 3046:3046
+    build: ./ai-speech-server
+
+  chatbox-app:
+    image: chatbox-app
+    ports:
+       - 80:80
+    build: ./ai-speech-app
+
+  ai-speech-db:
+    image: ai-speech-db
+    ports:
+      - 3307:3306
+    build: ./ai-speech-db
+    volumes:
+      - ai-speech-db-data:/var/lib/mysql

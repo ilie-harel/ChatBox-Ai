@@ -11,12 +11,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { TypeAnimation } from 'react-type-animation';
 import './SpeachFromText.css'
 import { changeRoomId, changeRoomName } from "../../../../app/roomSlice";
+import WelcomeComponent from "./WelcomeComponent/WelcomeComponent";
+import LinearProgress from '@mui/material/LinearProgress';
 
 function SpeechFromText() {
     const { transcript, listening, resetTranscript, finalTranscript, browserSupportsSpeechRecognition } = useSpeechRecognition();
     const [messages, setMessages] = useState([]);
     const authSlice = useSelector((state) => state.auth);
     const [loading, setLoading] = useState(false);
+    const [loadingData, setLoadingData] = useState(false);
     const dispatch = useDispatch()
     const roomSlice = useSelector((state) => state.room)
     const bottomRef = useRef(null);
@@ -35,24 +38,23 @@ function SpeechFromText() {
     }, [finalTranscript, listening]);
 
     useEffect(() => {
-        
-        
         if (roomSlice.id !== 0) {
             setMessages([])
+            setLoadingData(true)
             apiService.getMessagesByUserIdAndRoomId(roomSlice.id).then(res => setMessages(res)).then(() => {
                 setTimeout(() => {
-                    
-                    bottomRef.current?.scrollIntoView({behavior: 'smooth'});
+                    bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
                 }, 1);
+                setLoadingData(false)
             });
         }
-        
+
         console.log(roomSlice.id);
     }, [roomSlice])
-    
 
 
-        async function startListening() {
+
+    async function startListening() {
         if (roomSlice.id === 0) {
             const addRoom = await apiService.addRoom();
             dispatch(changeRoomId(addRoom.insertId))
@@ -77,8 +79,8 @@ function SpeechFromText() {
                 try {
                     const mes = await apiService.getMessagesByUserIdAndRoomId(roomSlice.id);
                     console.log(mes);
-                    setMessages(messages => [...messages, mes[0 + 1]])
-                    
+                    setMessages(messages => [...messages, mes[mes.length - 1]])
+
                     apiService.updateRoomName(mes[0].message, roomSlice.id);
                     dispatch(changeRoomName(mes[0].message))
                 } catch (e) {
@@ -96,46 +98,60 @@ function SpeechFromText() {
         <div className={authSlice.language === 'he' ? "SpeachFromText directionHe" : "SpeachFromText directionEn"}>
             <div className="chatDiv">
                 <div className="chat">
-                    {roomSlice.id == 0 ? 'Choose a room or start talking to create new one' :
-                        messages.map((m, index) => {
-                            const isLast = index === messages.length - 1;
-                            const className = isLast ? 'textChat lastMessage' : 'textChat';
-                            return (
-                                <div key={index} className="chatMessage">
-                                    {m.role === 0 ?
-                                        <div key={index} className={className}>
-                                            <CodeIcon fontSize="large" />
-                                            {isLast ?
-                                                <TypeAnimation
-                                                    sequence={[m.message]}
-                                                    wrapper="p"
-                                                    cursor={true}
-                                                    speed={50}
-                                                />
-                                                :
-                                                <p onClick={(e) => speakText(e.target.innerText)}>{m.message}</p>
-                                            }
-                                        <div ref={bottomRef} />
-                                        </div>
-                                        :
-                                        <div key={index} className={className}>
-                                            <DataObjectIcon fontSize="large" />
-                                            {isLast ?
-                                                <TypeAnimation
-                                                    sequence={[m.message]}
-                                                    wrapper="p"
-                                                    cursor={true}
-                                                    speed={50}
-                                                />
-                                                :
-                                                <p onClick={(e) => speakText(e.target.innerText)}>{m.message}</p>
-                                            }
-                                        </div>
-                                    }
-
+                    {roomSlice.id == 0 ?
+                        <div className="welcomeDiv">
+                            <WelcomeComponent />
+                        </div>
+                        :
+                        loadingData ?
+                            <div className="loadingDivData">
+                                <LinearProgress color="inherit" style={{ width: '60%' }} />
+                            </div>
+                            :
+                            messages.length === 0 ?
+                                <div className="emptyMessagesDiv">
+                                    <p>Start Talking</p>
                                 </div>
-                            );
-                        })}
+                                :
+                                messages.map((m, index) => {
+                                    const isLast = index === messages.length - 1;
+                                    const className = isLast ? 'textChat lastMessage' : 'textChat';
+                                    return (
+                                        <div key={index} className="chatMessage">
+                                            {m.role === 0 ?
+                                                <div key={m.id} className={className}>
+                                                    <CodeIcon fontSize="large" />
+                                                    {isLast ?
+                                                        <TypeAnimation
+                                                            sequence={[m.message]}
+                                                            wrapper="p"
+                                                            cursor={true}
+                                                            speed={50}
+                                                        />
+                                                        :
+                                                        <p onClick={(e) => speakText(e.target.innerText)}>{m.message}</p>
+                                                    }
+                                                    <div ref={bottomRef} />
+                                                </div>
+                                                :
+                                                <div key={m.id} className={className}>
+                                                    <DataObjectIcon fontSize="large" />
+                                                    {isLast ?
+                                                        <TypeAnimation
+                                                            sequence={[m.message]}
+                                                            wrapper="p"
+                                                            cursor={true}
+                                                            speed={50}
+                                                        />
+                                                        :
+                                                        <p onClick={(e) => speakText(e.target.innerText)}>{m.message}</p>
+                                                    }
+                                                </div>
+                                            }
+
+                                        </div>
+                                    );
+                                })}
 
                     {
                         loading ?

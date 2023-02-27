@@ -8,7 +8,7 @@ import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOu
 import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
 import { useState, useEffect } from "react";
 import { apiService } from "../../../../Service/ApiService";
-import { changeRoomId } from "../../../../app/roomSlice";
+import { changeRoomId, changeRoomName } from "../../../../app/roomSlice";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import DeleteIcon from '@mui/icons-material/Delete';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
@@ -36,11 +36,21 @@ export default function Rooms() {
     const newRoom = await apiService.addRoom();
     dispatch(changeRoomId(newRoom.insertId));
     setRooms((rooms) => [newRoom, ...rooms]);
+    
   }
 
   function handleRoomClick(roomId) {
     setSelectedRoomId(roomId);
     dispatch(changeRoomId(roomId));
+   
+  }
+
+  function handleDeleteRoom(roomId) {
+    apiService.deleteRoom(roomId).then(() => {
+      setRooms(rooms => rooms.filter(room => room.id !== roomId));
+      dispatch(changeRoomId(0))
+      dispatch(changeRoomName(''))
+    });
   }
 
   return (
@@ -52,18 +62,17 @@ export default function Rooms() {
 
       <div className="RoomsDiv">
         {rooms.map((room, index) => (
-            <div
+          <div
             key={index}
             className={`room ${room.id === selectedRoomId ? "selected" : ""}`}
             onClick={() => handleRoomClick(room.id)}
-            >
-                <div className="room_icons">
-                <ChatBubbleOutlineIcon className="chat_bubble_outlike_icon" />
-                <DeleteIcon className="delete_room_icon" onClick={() => apiService.deleteRoom(room.id)}/>
-                {/* <DeleteOutlineIcon  className="delete_room_icon_outlined"/> */}
-                </div>
-              {room.name ?? "New Chat"}
+          >
+            <div className="room_icons">
+              <ChatBubbleOutlineIcon className="chat_bubble_outlike_icon" />
+              <DeleteIcon className="delete_room_icon" onClick={() => handleDeleteRoom(room.id)} />
             </div>
+            {room.name ?? "New Chat"}
+          </div>
         ))}
       </div>
 

@@ -1,13 +1,12 @@
 .Login_Container {
-    padding-top: 50px !important;
     font-family: Arial, Helvetica, sans-serif;
 }
 
 .Login_Container .Login {
     display: flex;
-    width: 58%;
+    width: 60vw;
     margin: auto;
-    height: 70vh;
+    height: 80vh;
 }
 
 .Login_Container .Login>div {
@@ -22,6 +21,19 @@
     -webkit-box-shadow: -9px -1px 11px -6px rgba(0, 0, 0, 0.6);
     -moz-box-shadow: -9px -1px 11px -6px rgba(0, 0, 0, 0.6);
     
+}
+
+.Login_ContainerLogo{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.Login_ContainerLogo img{
+    top: 10px;
+    width: 400px;
+    position: absolute;
 }
 
 .Login_Container .Login>div form {
@@ -147,6 +159,4 @@
         border-color: orange;
     }
 }
-
-
 

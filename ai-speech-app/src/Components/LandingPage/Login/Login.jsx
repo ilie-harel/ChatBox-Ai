@@ -6,7 +6,9 @@ import { apiService } from '../../../Service/ApiService';
 import { useDispatch } from 'react-redux';
 import { loginRedux } from '../../../app/authSlice';
 import { toastsFunctions } from '../../../helpers/toastsFunctions';
-import img from "../../LandingPage/ai8.jpg"
+// import img from "../../LandingPage/ai8.jpg"
+import img from "../../LandingPage/ai10.jpg"
+import logo2 from "../../LandingPage/logo2.png"
 import { TypeAnimation } from 'react-type-animation';
 
 export default function Login() {
@@ -36,6 +38,9 @@ export default function Login() {
                 </div>
                 <div className="form_container">
                     <form onSubmit={handleSubmit(loginUser)}>
+                        <div className='Login_ContainerLogo'>
+                            <img src={logo2} alt="" />
+                        </div>
                         <div className="logo_login_form">
                         </div>
                         {/* <p className="signIn_text_form typewriter">Sign into your account</p> */}
@@ -45,9 +50,9 @@ export default function Login() {
                             cursor={true}
                             speed={50}
                         />
-                        <input placeholder="Username" type="username" {...register("username", { required: true })} />
+                        <input placeholder="Email" type="email" {...register("email", { required: true })} />
                         <input placeholder="Password" type="password" {...register("password", { required: true, minLength: 4 })} />
-                        <button type="submit" >LOGIN</button>
+                        <button type="submit">LOGIN</button>
                         <Link className="link_to_register_in_login_form" to={"/register"}>Don't have an account? Register here</Link>
                         <p className="terms_login_form">Terms of use. Privacy policy</p>
                     </form>

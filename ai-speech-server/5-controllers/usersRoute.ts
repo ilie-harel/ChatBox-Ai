@@ -25,11 +25,11 @@ UserRoute.post('/users/register', async (req, res) => {
 })
 
 UserRoute.post('/users/login', async (req, res) => {
-    const username = req.body.username;
+    const email = req.body.email;
     const password = req.body.password;
     const users = await getAllUsers();
     try {
-        const user: any = users.find((u: any) => u.username === username && u.password === hashedPassword(password));
+        const user: any = users.find((u: any) => u.email === email && u.password === hashedPassword(password));
         if (user) {
             const token = await generateToken(user)
             res.status(200).json(token);

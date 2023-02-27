@@ -34,7 +34,7 @@ CREATE TABLE `messages` (
   KEY `__id_idx` (`roomId`),
   CONSTRAINT `__id` FOREIGN KEY (`roomId`) REFERENCES `rooms` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `id` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=1108 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1192 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,7 +43,7 @@ CREATE TABLE `messages` (
 
 LOCK TABLES `messages` WRITE;
 /*!40000 ALTER TABLE `messages` DISABLE KEYS */;
-INSERT INTO `messages` VALUES (1104,'\n\nBitcoin is a decentralized digital currency that can be sent electronically around the world, allowing people to buy goods and services online and in stores. Bitcoin is transferred from one user to another, usually through an online exchange. It operates independently of any central bank and does not require users to provide personal information. Bitcoin is based on a peer-to-peer network, meaning that transactions take place directly between users without the need for an intermediary.',0,'1677340246891',42,77),(1105,'what is bitcoin',1,'1677340247201',42,77),(1106,'\n\nIsrael is in the Middle East and is bordered by the Mediterranean Sea to the west, Lebanon to the north, Syria to the northeast, Jordan and the West Bank to the east, and Egypt and the Gaza Strip to the southwest.',0,'1677340298684',42,77),(1107,'Where is Israel?',1,'1677340298858',42,77);
+INSERT INTO `messages` VALUES (1190,'what is bitcoin',1,'1677484792420',42,97),(1191,'\n\nBitcoin is a digital, decentralized, and global currency designed to facilitate peer-to-peer transactions across the world. It functions without a central governing authority and is supported by a decentralized network of computers across the globe. Bitcoin can be used to send and receive money, store value, and pay for goods and services in a permissionless, secure and decentralized digital network.',0,'1677484798143',42,97);
 /*!40000 ALTER TABLE `messages` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -61,7 +61,7 @@ CREATE TABLE `rooms` (
   PRIMARY KEY (`id`),
   KEY `id_idx` (`userId`),
   CONSTRAINT `_id` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=98 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -70,7 +70,7 @@ CREATE TABLE `rooms` (
 
 LOCK TABLES `rooms` WRITE;
 /*!40000 ALTER TABLE `rooms` DISABLE KEYS */;
-INSERT INTO `rooms` VALUES (77,'New Chat',42),(78,'New Chat',42);
+INSERT INTO `rooms` VALUES (97,'מה זה ביטקוין',42);
 /*!40000 ALTER TABLE `rooms` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -90,7 +90,7 @@ CREATE TABLE `users` (
   `password` varchar(100) DEFAULT NULL,
   `language` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -99,7 +99,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (42,'ilie','beracha','ilieberacha','ilieberacha123@gmail.com','5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5','he'),(43,'ilie','beracha','ilieF','ilieberacha1253@gmail.com','5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5','en'),(44,'sapir','mos','sapirmo','sapirmo2000@gmail.com','5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5','he');
+INSERT INTO `users` VALUES (42,'ilie','beracha','ilieberacha','ilieberacha123@gmail.com','5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5','he'),(43,'ilie','beracha','ilieF','ilieberacha1253@gmail.com','5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5','en'),(44,'sapir','mos','sapirmo','sapirmo2000@gmail.com','5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5','he'),(45,'ilie','beracha','ilieberacha','ilieberacha12345@gmail.com','5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5','en');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -112,4 +112,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-02-25 17:52:49
+-- Dump completed on 2023-02-27 10:13:08

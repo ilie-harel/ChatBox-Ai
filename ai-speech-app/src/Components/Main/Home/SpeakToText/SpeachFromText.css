@@ -35,14 +35,22 @@
     width: 90%;
     overflow: auto;
     box-sizing: border-box;
-    padding: 100px;
+    padding: 20px;
     display: flex;
-    height: 80%;
-    margin: auto auto;
+    height: 100%;
+    /* margin: auto auto; */
     flex-direction: column;
-
 }
 
+.welcomeDiv,
+.loadingDivData,
+.emptyMessagesDiv{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .chat::-webkit-scrollbar {
     width: 8px;

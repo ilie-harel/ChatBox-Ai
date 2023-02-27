@@ -1,5 +1,6 @@
 import * as dotenv from 'dotenv';
-dotenv.config()
+
+dotenv.config({ path: process.env.NODE_ENV === 'dev' ? '.env.dev' : '.env.prod' })
 
 const googleTranslate = require('google-translate')(process.env.GOOGLE_TRANSLATE_KEY);
 

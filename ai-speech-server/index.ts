@@ -5,7 +5,10 @@ import { MessagesRoute } from './5-controllers/MessagesRoute';
 import * as dotenv from 'dotenv'
 import { UserRoute } from './5-controllers/usersRoute';
 import { RoomsRoute } from './5-controllers/roomsRoute';
-dotenv.config()
+
+dotenv.config({ path: process.env.NODE_ENV === 'dev' ? '.env.dev' : '.env.prod' });
+
+console.log(process.env.NODE_ENV);
 
 const app = express();
 
