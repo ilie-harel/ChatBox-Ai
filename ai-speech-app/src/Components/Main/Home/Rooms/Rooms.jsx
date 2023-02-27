@@ -3,7 +3,7 @@ import "./Rooms.css";
 import LogoutIcon from "@mui/icons-material/Logout";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import { useDispatch, useSelector } from "react-redux";
-import { logoutRedux } from "../../../../app/authSlice";
+import { loginRedux, logoutRedux } from "../../../../app/authSlice";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
 import { useState, useEffect } from "react";
@@ -36,13 +36,11 @@ export default function Rooms() {
     const newRoom = await apiService.addRoom();
     dispatch(changeRoomId(newRoom.insertId));
     setRooms((rooms) => [newRoom, ...rooms]);
-    
   }
 
   function handleRoomClick(roomId) {
     setSelectedRoomId(roomId);
     dispatch(changeRoomId(roomId));
-   
   }
 
   function handleDeleteRoom(roomId) {
@@ -51,6 +49,19 @@ export default function Rooms() {
       dispatch(changeRoomId(0))
       dispatch(changeRoomName(''))
     });
+  }
+
+  async function changeLanguage(language) {
+    if (language === "") return;
+    try {
+      const results = await apiService.changeUserLanguage(language);
+      console.log(results);
+      dispatch(loginRedux(results));
+      dispatch(changeRoomId(0))
+      dispatch(changeRoomName(''))
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   return (
@@ -75,7 +86,15 @@ export default function Rooms() {
           </div>
         ))}
       </div>
-
+      <div className="changeLanguageDiv">
+        <select onChange={(e) => changeLanguage(e.target.value)}>
+          <option value="">Change Language</option>
+          <option value="he">Hebrew</option>
+          <option value="en">English</option>
+          <option value="fr">Français</option>
+          <option value="es">español</option>
+        </select>
+      </div>
       <div onClick={logOut} className="LogoutBtnDiv">
         <LogoutOutlinedIcon className="hover" />
         <LogoutIcon className="not_hover" />

@@ -1,7 +1,7 @@
 import express from 'express';
 import { hashedPassword } from '../1-dal/hashedPssword';
-import { generateToken } from '../1-dal/jwt';
-import { getAllUsers, register } from '../3-logic/userLogic';
+import { generateToken, getDetailsFromToken } from '../1-dal/jwt';
+import { changeUserLanguage, getAllUsers, register } from '../3-logic/userLogic';
 import { UserModel } from '../4-model/usersModel';
 
 
@@ -38,5 +38,25 @@ UserRoute.post('/users/login', async (req, res) => {
         }
     } catch (e) {
         res.status(400).json('Something went wrong...')
+    }
+})
+
+UserRoute.put('/users/language', async (req, res) => {
+    const lan = req.query.lan;
+    try {
+        const token = req.headers.authorization;
+        const { sub, firstName, lastName, email } = await getDetailsFromToken(token);
+        await changeUserLanguage(sub, String(lan));
+        const updatedUser: any = {
+            id: sub,
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            language: lan
+        }
+        const newToken = await generateToken(updatedUser)
+        res.status(200).json(newToken);
+    } catch (e) {
+        res.status(401).json(e)
     }
 })

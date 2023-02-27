@@ -17,8 +17,8 @@ export async function generateToken(user: UserModel) {
 export async function getDetailsFromToken(token: any) {
     try {
         const verifyToken = jwt.verify(token.substring(7), PRIVATE_KEY);
-        const { sub, language } = verifyToken
-        return { sub, language }
+        const { sub, language, firstName, lastName, email } = verifyToken
+        return { sub, language, firstName, lastName, email }
     } catch (e) {
         return e
     }

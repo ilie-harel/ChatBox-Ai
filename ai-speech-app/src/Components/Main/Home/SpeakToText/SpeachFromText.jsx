@@ -13,6 +13,7 @@ import './SpeachFromText.css'
 import { changeRoomId, changeRoomName } from "../../../../app/roomSlice";
 import WelcomeComponent from "./WelcomeComponent/WelcomeComponent";
 import LinearProgress from '@mui/material/LinearProgress';
+import { toastsFunctions } from "../../../../helpers/toastsFunctions";
 
 function SpeechFromText() {
     const { transcript, listening, resetTranscript, finalTranscript, browserSupportsSpeechRecognition } = useSpeechRecognition();
@@ -20,9 +21,9 @@ function SpeechFromText() {
     const authSlice = useSelector((state) => state.auth);
     const [loading, setLoading] = useState(false);
     const [loadingData, setLoadingData] = useState(false);
-    const dispatch = useDispatch()
     const roomSlice = useSelector((state) => state.room)
     const bottomRef = useRef(null);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         if (!browserSupportsSpeechRecognition) {
@@ -71,7 +72,7 @@ function SpeechFromText() {
         if (roomSlice.id) {
             const res = await apiService.sendMessageToChatGPT({ message: transcript, room: roomSlice.id });
             if (res.status !== 200) {
-                alert('error')
+                toastsFunctions.toastError('Error occured')
             } else {
                 const reply = await res.json();
                 speakText(reply)
@@ -80,9 +81,8 @@ function SpeechFromText() {
                     const mes = await apiService.getMessagesByUserIdAndRoomId(roomSlice.id);
                     console.log(mes);
                     setMessages(messages => [...messages, mes[mes.length - 1]])
-
                     apiService.updateRoomName(mes[0].message, roomSlice.id);
-                    dispatch(changeRoomName(mes[0].message))
+                    dispatch(changeRoomName(mes[0].message));
                 } catch (e) {
                     alert(e)
                 }
@@ -121,7 +121,7 @@ function SpeechFromText() {
                                             {m.role === 0 ?
                                                 <div key={m.id} className={className}>
                                                     <CodeIcon fontSize="large" />
-                                                    {isLast ?
+                                                    {isLast?
                                                         <TypeAnimation
                                                             sequence={[m.message]}
                                                             wrapper="p"
@@ -136,7 +136,7 @@ function SpeechFromText() {
                                                 :
                                                 <div key={m.id} className={className}>
                                                     <DataObjectIcon fontSize="large" />
-                                                    {isLast ?
+                                                    {isLast?
                                                         <TypeAnimation
                                                             sequence={[m.message]}
                                                             wrapper="p"

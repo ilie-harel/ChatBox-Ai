@@ -18,6 +18,21 @@ class ApiService {
         return results;
     }
 
+    async changeUserLanguage(language){
+        const token = getToken()
+        const results = fetch(`http://localhost:3046/users/language?lan=${language}`, {
+            method: 'PUT',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json',
+                'authorization': `Bearer ${token}`,
+                'accept-charset': 'utf-8'
+            },
+        })
+        const data = await (await results).json();
+        return data;
+    }
+
 
 
     // messages
@@ -39,20 +54,6 @@ class ApiService {
         })
         return results;
     }
-
-    // getMessagesByUser() {
-    //     const token = getToken()
-    //     const results = fetch(`http://localhost:3046/message`, {
-    //         method: 'GET',
-    //         mode: 'cors',
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //             'authorization': `Bearer ${token}`,
-    //             'accept-charset': 'utf-8'
-    //         },
-    //     })
-    //     return results;
-    // }
 
     async getMessagesByUserIdAndRoomId(roomId) {
         const token = getToken()
