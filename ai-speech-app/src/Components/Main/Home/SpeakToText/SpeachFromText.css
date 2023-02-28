@@ -35,8 +35,8 @@
     box-sizing: border-box;
     padding: 10px;
     display: flex;
-    height: 100%;
-    /* margin: auto auto; */
+    height: 80%;
+    margin: auto auto;
     flex-direction: column;
 }
 
@@ -272,8 +272,17 @@
 @media only screen and (max-width: 1000px) {
     .chatDiv {
         padding: 0px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
     }
-
+    .chat {
+        margin: 0;
+    }   
+    .SpeachFromTextButtons {
+        width: 100%;
+        flex-direction: row;
+    }
     .Start_Record {
         width: 50px;
         height: 50px;

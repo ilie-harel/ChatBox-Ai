@@ -104,7 +104,7 @@ export default function RoomsSmallScreen() {
                                 >
                                     <div className="room_icons">
                                         <ChatBubbleOutlineIcon className="chat_bubble_outlike_icon" />
-                                        <DeleteIcon className="delete_room_icon" onClick={() => handleDeleteRoom(room.id)} />
+                                        <DeleteIcon className="delete_room_icon_sm_screen" onClick={() => handleDeleteRoom(room.id)} />
                                     </div>
                                     {room.name ?? "New Chat"}
                                 </div>
