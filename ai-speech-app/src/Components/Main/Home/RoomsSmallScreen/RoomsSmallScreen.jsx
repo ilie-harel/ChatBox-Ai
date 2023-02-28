@@ -20,12 +20,18 @@ export default function RoomsSmallScreen() {
     const roomSlice = useSelector((state) => state.room);
     const [selectedRoomId, setSelectedRoomId] = useState(null);
     const overlaySelector = useSelector((state) => state.overlay)
+    const authSlice = useSelector((state) => state.auth)
 
     useEffect(() => {
         apiService.getRoomsByUserId().then(async (res) => {
             setRooms(res);
         });
     }, [roomSlice]);
+
+    function handleCloseMenu() {
+        setIsOpen(!isOpen);
+        dispatch(setOverlay(!overlaySelector))
+    }
 
     function logOut() {
         dispatch(setOverlay(false))
@@ -36,11 +42,13 @@ export default function RoomsSmallScreen() {
         const newRoom = await apiService.addRoom();
         dispatch(changeRoomId(newRoom.insertId));
         setRooms((rooms) => [newRoom, ...rooms]);
+        handleCloseMenu()
     }
 
     function handleRoomClick(roomId) {
         setSelectedRoomId(roomId);
         dispatch(changeRoomId(roomId));
+        handleCloseMenu()
     }
 
     function handleDeleteRoom(roomId) {
@@ -49,6 +57,7 @@ export default function RoomsSmallScreen() {
             dispatch(changeRoomId(0))
             dispatch(changeRoomName(''))
         });
+        handleCloseMenu()
     }
 
     async function changeLanguage(language) {
@@ -61,7 +70,8 @@ export default function RoomsSmallScreen() {
             apiService.getRoomsByUserId().then(async (res) => {
                 setRooms(res);
             });
-            setSelectedRoomId(null)
+            setSelectedRoomId(null);
+            handleCloseMenu()
         } catch (e) {
             console.log(e);
         }
@@ -70,13 +80,12 @@ export default function RoomsSmallScreen() {
     function openMenu() {
         setIsOpen(!isOpen)
         dispatch(setOverlay(!overlaySelector))
-        console.log(overlaySelector);
     }
 
     return (
         <div className='RoomsSmallScreen'>
             <div className='RoomsSmallScreenOpen'>
-                <div className='openMenuButton' onClick={() => openMenu()}><MenuIcon fontSize='small'/></div>
+                <div className='openMenuButton' onClick={() => openMenu()}><MenuIcon fontSize='small' /></div>
             </div>
             {
                 isOpen ?
@@ -102,7 +111,7 @@ export default function RoomsSmallScreen() {
                             ))}
                         </div>
                         <div className="changeLanguageDiv">
-                            <select onChange={(e) => changeLanguage(e.target.value)}>
+                            <select defaultValue={authSlice.language} onChange={(e) => changeLanguage(e.target.value)}>
                                 <option value="">Change Language</option>
                                 <option value="he">Hebrew</option>
                                 <option value="en">English</option>

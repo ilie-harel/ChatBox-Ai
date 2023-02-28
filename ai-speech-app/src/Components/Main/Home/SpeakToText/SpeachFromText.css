@@ -1,8 +1,6 @@
 .SpeachFromText {
     width: 85%;
     height: 100%;
-
-    /* background-color: red; */
 }
 
 .directionHe {
@@ -35,7 +33,7 @@
     width: 90%;
     overflow: auto;
     box-sizing: border-box;
-    padding: 20px;
+    padding: 10px;
     display: flex;
     height: 100%;
     /* margin: auto auto; */
@@ -114,7 +112,6 @@
 
 .loadingDiv {
     display: flex;
-    /* justify-content: center; */
     align-items: center;
     gap: 20px;
     cursor: pointer;
@@ -249,44 +246,6 @@
     }
 }
 
-
-/*  */
-
-
-.chat_text p {
-    overflow: hidden;
-    border-right: .15em solid orange;
-    white-space: pre-wrap;
-    letter-spacing: .15em;
-    animation:
-        typing 0.1s steps(1, end),
-        blink-caret .75s infinite;
-}
-
-@keyframes typing {
-    from {
-        width: 0
-    }
-
-    to {
-        width: 100%
-    }
-}
-
-@keyframes blink-caret {
-
-    from,
-    to {
-        border-color: transparent
-    }
-
-    50% {
-        border-color: orange;
-    }
-}
-
-
-
 .loadingText {
     animation: blink 1s infinite;
 }
@@ -318,5 +277,14 @@
     .Start_Record {
         width: 50px;
         height: 50px;
+    }
+
+    .Start_Record img {
+        width: 20px;
+        height: 20px;
+    }
+
+    .textChat p{
+        font-size: 15px;
     }
 }

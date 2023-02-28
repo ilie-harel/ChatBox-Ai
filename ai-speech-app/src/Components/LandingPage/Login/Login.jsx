@@ -6,9 +6,7 @@ import { apiService } from '../../../Service/ApiService';
 import { useDispatch } from 'react-redux';
 import { loginRedux } from '../../../app/authSlice';
 import { toastsFunctions } from '../../../helpers/toastsFunctions';
-// import img from "../../LandingPage/ai8.jpg"
 import img from "../../LandingPage/ai10.jpg"
-import logo from "../../LandingPage/logo.png"
 import { TypeAnimation } from 'react-type-animation';
 
 export default function Login() {
@@ -38,9 +36,9 @@ export default function Login() {
                 </div>
                 <div className="form_container">
                     <form onSubmit={handleSubmit(loginUser)}>
-                        <div className='Login_ContainerLogo'>
+                        {/* <div className='Login_ContainerLogo'>
                             <img src={logo} alt="" />
-                        </div>
+                        </div> */}
                         <TypeAnimation
                             sequence={['Sign into your account']}
                             wrapper="h3"

@@ -20,20 +20,21 @@
     box-shadow: -9px -1px 11px -6px rgba(0, 0, 0, 0.6);
     -webkit-box-shadow: -9px -1px 11px -6px rgba(0, 0, 0, 0.6);
     -moz-box-shadow: -9px -1px 11px -6px rgba(0, 0, 0, 0.6);
-    
+
 }
 
-.Login_ContainerLogo{
+.Login_ContainerLogo {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 
 }
-.Login_ContainerLogo img{
-    top: 10px;
+
+.Login_ContainerLogo img {
+    /* top: 10px; */
     width: 400px;
-    position: absolute;
+    /* position: absolute; */
 }
 
 .Login_Container .Login>div form {
@@ -118,7 +119,20 @@
     object-fit: cover;
 }
 
-.form_container h3{
+.form_container h3 {
     margin-bottom: 30px;
 }
 
+@media only screen and (max-width: 1000px) {
+    .Login_Container .Login .vacation_image_login {
+        display: none;
+    }
+
+    .Login_Container .Login>div {
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        padding: 10px;
+        text-align: center;
+    }
+}

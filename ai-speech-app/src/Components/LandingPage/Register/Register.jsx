@@ -6,7 +6,6 @@ import { apiService } from '../../../Service/ApiService';
 import { useDispatch } from 'react-redux';
 import { loginRedux } from '../../../app/authSlice';
 import { toastsFunctions } from '../../../helpers/toastsFunctions';
-// import img from "../../LandingPage/ai8.jpg"
 import img from "../../LandingPage/ai10.jpg"
 import { TypeAnimation } from 'react-type-animation';
 
