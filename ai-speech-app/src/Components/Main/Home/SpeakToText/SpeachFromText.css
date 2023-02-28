@@ -309,3 +309,15 @@
 .index-module_type__E-SaG::after{
     color: orange;
 }
+  
+  /* Media queries for tablet screens */
+/* @media only screen and (max-width: 1000px) {
+    .chatDiv {
+      padding: 0px ;
+    }
+  }
+   */
+  
+  
+  
+  
