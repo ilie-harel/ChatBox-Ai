@@ -9,11 +9,11 @@ import CodeIcon from '@mui/icons-material/Code';
 import DataObjectIcon from '@mui/icons-material/DataObject';
 import { useDispatch, useSelector } from "react-redux";
 import { TypeAnimation } from 'react-type-animation';
-import './SpeachFromText.css'
 import { changeRoomId, changeRoomName } from "../../../../app/roomSlice";
 import WelcomeComponent from "./WelcomeComponent/WelcomeComponent";
 import LinearProgress from '@mui/material/LinearProgress';
 import { toastsFunctions } from "../../../../helpers/toastsFunctions";
+import './SpeachFromText.css'
 
 function SpeechFromText() {
     const { transcript, listening, resetTranscript, finalTranscript, browserSupportsSpeechRecognition } = useSpeechRecognition();
@@ -121,7 +121,7 @@ function SpeechFromText() {
                                             {m.role === 0 ?
                                                 <div key={m.id} className={className}>
                                                     <CodeIcon fontSize="large" />
-                                                    {isLast?
+                                                    {isLast ?
                                                         <TypeAnimation
                                                             sequence={[m.message]}
                                                             wrapper="p"
@@ -136,7 +136,7 @@ function SpeechFromText() {
                                                 :
                                                 <div key={m.id} className={className}>
                                                     <DataObjectIcon fontSize="large" />
-                                                    {isLast?
+                                                    {isLast ?
                                                         <TypeAnimation
                                                             sequence={[m.message]}
                                                             wrapper="p"

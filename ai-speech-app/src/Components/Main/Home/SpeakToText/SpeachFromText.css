@@ -44,7 +44,7 @@
 
 .welcomeDiv,
 .loadingDivData,
-.emptyMessagesDiv{
+.emptyMessagesDiv {
     width: 100%;
     height: 100%;
     display: flex;
@@ -306,18 +306,17 @@
 }
 
 
-.index-module_type__E-SaG::after{
+.index-module_type__E-SaG::after {
     color: orange;
 }
-  
-  /* Media queries for tablet screens */
-/* @media only screen and (max-width: 1000px) {
+
+@media only screen and (max-width: 1000px) {
     .chatDiv {
-      padding: 0px ;
+        padding: 0px;
     }
-  }
-   */
-  
-  
-  
-  
+
+    .Start_Record {
+        width: 50px;
+        height: 50px;
+    }
+}

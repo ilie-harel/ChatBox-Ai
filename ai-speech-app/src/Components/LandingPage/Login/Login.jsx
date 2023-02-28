@@ -8,7 +8,7 @@ import { loginRedux } from '../../../app/authSlice';
 import { toastsFunctions } from '../../../helpers/toastsFunctions';
 // import img from "../../LandingPage/ai8.jpg"
 import img from "../../LandingPage/ai10.jpg"
-import logo2 from "../../LandingPage/logo2.png"
+import logo from "../../LandingPage/logo.png"
 import { TypeAnimation } from 'react-type-animation';
 
 export default function Login() {
@@ -39,16 +39,14 @@ export default function Login() {
                 <div className="form_container">
                     <form onSubmit={handleSubmit(loginUser)}>
                         <div className='Login_ContainerLogo'>
-                            <img src={logo2} alt="" />
+                            <img src={logo} alt="" />
                         </div>
-                        <div className="logo_login_form">
-                        </div>
-                        {/* <p className="signIn_text_form typewriter">Sign into your account</p> */}
                         <TypeAnimation
                             sequence={['Sign into your account']}
                             wrapper="h3"
                             cursor={true}
                             speed={50}
+                            className={'signInAnimation'}
                         />
                         <input placeholder="Email" type="email" {...register("email", { required: true })} />
                         <input placeholder="Password" type="password" {...register("password", { required: true, minLength: 4 })} />

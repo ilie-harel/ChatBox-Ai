@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import LogoutIcon from "@mui/icons-material/Logout";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,6 +11,7 @@ import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import DeleteIcon from '@mui/icons-material/Delete';
 import MenuIcon from '@mui/icons-material/Menu';
 import './RoomsSmallScreen.css'
+import { setOverlay } from '../../../../app/overlaySlice';
 
 export default function RoomsSmallScreen() {
     const [isOpen, setIsOpen] = useState();
@@ -18,66 +19,74 @@ export default function RoomsSmallScreen() {
     const [rooms, setRooms] = useState([]);
     const roomSlice = useSelector((state) => state.room);
     const [selectedRoomId, setSelectedRoomId] = useState(null);
-  
+    const overlaySelector = useSelector((state) => state.overlay)
+
     useEffect(() => {
-      apiService.getRoomsByUserId().then(async (res) => {
-        setRooms(res);
-      });
-    }, [roomSlice]);
-  
-    function logOut() {
-      dispatch(logoutRedux());
-    }
-  
-    async function addRoom() {
-      const newRoom = await apiService.addRoom();
-      dispatch(changeRoomId(newRoom.insertId));
-      setRooms((rooms) => [newRoom, ...rooms]);
-    }
-  
-    function handleRoomClick(roomId) {
-      setSelectedRoomId(roomId);
-      dispatch(changeRoomId(roomId));
-    }
-  
-    function handleDeleteRoom(roomId) {
-      apiService.deleteRoom(roomId).then(() => {
-        setRooms(rooms => rooms.filter(room => room.id !== roomId));
-        dispatch(changeRoomId(0))
-        dispatch(changeRoomName(''))
-      });
-    }
-  
-    async function changeLanguage(language) {
-      if (language === "") return;
-      try {
-        const results = await apiService.changeUserLanguage(language);
-        dispatch(loginRedux(results));
-        dispatch(changeRoomId(0))
-        dispatch(changeRoomName(''));
         apiService.getRoomsByUserId().then(async (res) => {
-          setRooms(res);
+            setRooms(res);
         });
-        setSelectedRoomId(null)
-      } catch (e) {
-        console.log(e);
-      }
+    }, [roomSlice]);
+
+    function logOut() {
+        dispatch(setOverlay(false))
+        dispatch(logoutRedux());
+    }
+
+    async function addRoom() {
+        const newRoom = await apiService.addRoom();
+        dispatch(changeRoomId(newRoom.insertId));
+        setRooms((rooms) => [newRoom, ...rooms]);
+    }
+
+    function handleRoomClick(roomId) {
+        setSelectedRoomId(roomId);
+        dispatch(changeRoomId(roomId));
+    }
+
+    function handleDeleteRoom(roomId) {
+        apiService.deleteRoom(roomId).then(() => {
+            setRooms(rooms => rooms.filter(room => room.id !== roomId));
+            dispatch(changeRoomId(0))
+            dispatch(changeRoomName(''))
+        });
+    }
+
+    async function changeLanguage(language) {
+        if (language === "") return;
+        try {
+            const results = await apiService.changeUserLanguage(language);
+            dispatch(loginRedux(results));
+            dispatch(changeRoomId(0))
+            dispatch(changeRoomName(''));
+            apiService.getRoomsByUserId().then(async (res) => {
+                setRooms(res);
+            });
+            setSelectedRoomId(null)
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    function openMenu() {
+        setIsOpen(!isOpen)
+        dispatch(setOverlay(!overlaySelector))
+        console.log(overlaySelector);
     }
 
     return (
         <div className='RoomsSmallScreen'>
             <div className='RoomsSmallScreenOpen'>
-                <div className='openMenuButton' onClick={() => setIsOpen(!isOpen)}><MenuIcon /></div>
+                <div className='openMenuButton' onClick={() => openMenu()}><MenuIcon fontSize='small'/></div>
             </div>
             {
                 isOpen ?
-                    <div className='Rooms'>
+                    <div className={`Rooms ${isOpen ? "open" : "closed"}`}>
                         <div onClick={addRoom} className="AddBtnDiv">
                             <AddCircleOutlineOutlinedIcon className="hover" />
                             <AddCircleOutlinedIcon className="not_hover" />
                         </div>
 
-                        <div className="RoomsDiv">
+                        <div className="RoomsDivSmallScreen">
                             {rooms.map((room, index) => (
                                 <div
                                     key={index}

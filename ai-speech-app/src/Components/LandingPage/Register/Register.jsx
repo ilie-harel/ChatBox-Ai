@@ -57,7 +57,7 @@ export default function Register() {
                             <option value="es">español</option>
                         </select>
                         <button type="submit" >REGISTER</button>
-                        <Link className="link_to_register_in_register_form" to={"/"}>Already a member? login</Link>
+                        <Link className="link_to_login_in_register_form" to={"/"}>Already a member? login</Link>
                         <p className="terms_register_form">Terms of use. Privacy policy</p>
 
                     </form>

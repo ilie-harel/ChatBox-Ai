@@ -8,16 +8,15 @@ import { Route, Routes } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 function App() {
-  // let token = window.localStorage.getItem("VoiceChatToken") 
-  const authSlice = useSelector((state) => state.auth)
-  useEffect(() => {
-    // token = window.localStorage.getItem('VoiceChatToken')
-  }, [authSlice])
+  const authSlice = useSelector((state) => state.auth);
+  const overlaySelector = useSelector((state) => state.overlay)
+
   return (
     <div className="App">
-      {/* <Header /> */}
+       {overlaySelector?
+                <div id="overlay"></div>
+            :<></>}
       <Routes>
-
         {
           authSlice ?
             <Route path='*' element={<Main />}></Route>
