@@ -13,13 +13,18 @@ ChatGptRoute.post('/message', async (req, res) => {
 
     try {
         const { sub, language } = await getDetailsFromToken(token);
-        const translatedTextEnglish = await translateToEn(message);
-
-        await saveUserMessages(translatedTextEnglish, sub, room);
-        const chatGptResults = await getMessageFromChatGPTandSave(translatedTextEnglish, sub, room);
-        const translatedTextByUserLanguage = await translateToUserLanguage(chatGptResults, language);
-
-        res.status(200).json(translatedTextByUserLanguage);
+        if (language === 'en') {
+            await saveUserMessages(message, sub, room);
+            const chatGptResults = await getMessageFromChatGPTandSave(message, sub, room);
+            res.status(200).json(chatGptResults);
+            return;
+        } else {
+            const translatedTextEnglish = await translateToEn(message);
+            await saveUserMessages(translatedTextEnglish, sub, room);
+            const chatGptResults = await getMessageFromChatGPTandSave(translatedTextEnglish, sub, room);
+            const translatedTextByUserLanguage = await translateToUserLanguage(chatGptResults, language);
+            res.status(200).json(translatedTextByUserLanguage);
+        }
     } catch (e) {
         res.status(401).json(e)
     }

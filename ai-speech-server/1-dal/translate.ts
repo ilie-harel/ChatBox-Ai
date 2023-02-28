@@ -20,7 +20,6 @@ export function translateToEn(message: string): Promise<string> {
 
 export function translateToUserLanguage(message: string, language: string): Promise<string> {
     return new Promise((resolve, reject) => {
-        // console.log(message, language);
         googleTranslate.translate(message, language, (err: any, translation: any) => {
             if (err) {
                 reject(err);

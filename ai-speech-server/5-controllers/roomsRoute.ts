@@ -5,14 +5,24 @@ import { addRoom, deleteRoomByRoomId, getRoomsByUserId, updateRoomNameByRoomId }
 
 export const RoomsRoute = express.Router();
 
-
 RoomsRoute.get('/rooms', async (req, res) => {
     try {
         const token = req.headers.authorization;
-        const { sub,language } = await getDetailsFromToken(token);
-        const results = await getRoomsByUserId(sub);
-        // const translatedTextByUserLanguage = await translateToUserLanguage(results, language);
-        res.status(200).json(results);
+        const { sub, language } = await getDetailsFromToken(token);
+        const results: any = await getRoomsByUserId(sub);
+        if (language === "en") {
+            res.status(200).json(results);
+            return;
+        } else {
+            const translatedRoomNames = await Promise.all(results.map(async (room: any) => {
+                const translatedName = await translateToUserLanguage(room.name, language);
+                return {
+                    ...room,
+                    name: translatedName
+                };
+            }));
+            res.status(200).json(translatedRoomNames);
+        }
     } catch (e) {
         res.status(401).json(e)
     }
@@ -21,9 +31,7 @@ RoomsRoute.get('/rooms', async (req, res) => {
 RoomsRoute.post('/rooms/add', async (req, res) => {
     try {
         const token = req.headers.authorization;
-        const { sub,language } = await getDetailsFromToken(token);
-        
-        
+        const { sub } = await getDetailsFromToken(token);
         const results = await addRoom(sub);
         res.status(200).json(results);
     } catch (e) {
@@ -34,7 +42,6 @@ RoomsRoute.post('/rooms/add', async (req, res) => {
 RoomsRoute.delete('/rooms/delete/:id', async (req, res) => {
     try {
         const roomId = req.params.id;
-        // const { sub } = await getDetailsFromToken(token);
         const results = await deleteRoomByRoomId(+roomId);
         res.status(200).json(results);
     } catch (e) {

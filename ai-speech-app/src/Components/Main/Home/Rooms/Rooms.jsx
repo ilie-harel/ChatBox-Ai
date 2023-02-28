@@ -11,7 +11,6 @@ import { apiService } from "../../../../Service/ApiService";
 import { changeRoomId, changeRoomName } from "../../../../app/roomSlice";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import DeleteIcon from '@mui/icons-material/Delete';
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 export default function Rooms() {
   const dispatch = useDispatch();
@@ -19,13 +18,10 @@ export default function Rooms() {
   const roomSlice = useSelector((state) => state.room);
   const [selectedRoomId, setSelectedRoomId] = useState(null);
 
-
-
   useEffect(() => {
     apiService.getRoomsByUserId().then(async (res) => {
       setRooms(res);
     });
-    console.log(roomSlice);
   }, [roomSlice]);
 
   function logOut() {
@@ -55,10 +51,13 @@ export default function Rooms() {
     if (language === "") return;
     try {
       const results = await apiService.changeUserLanguage(language);
-      console.log(results);
       dispatch(loginRedux(results));
       dispatch(changeRoomId(0))
-      dispatch(changeRoomName(''))
+      dispatch(changeRoomName(''));
+      apiService.getRoomsByUserId().then(async (res) => {
+        setRooms(res);
+      });
+      setSelectedRoomId(null)
     } catch (e) {
       console.log(e);
     }

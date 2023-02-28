@@ -7,7 +7,8 @@ export async function getMessageFromChatGPTandSave(message: string, id: number, 
         const completion = await openai.createCompletion({
             model: "text-davinci-003",
             prompt: message,
-            max_tokens: 1000
+            max_tokens: 1000,
+            
         });
         const reply = completion.data.choices[0].text;
         const timeStamp = new Date().getTime();
