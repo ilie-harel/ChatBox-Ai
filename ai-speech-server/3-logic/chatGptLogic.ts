@@ -29,7 +29,6 @@ export async function getMessageFromChatGPTandSave(message: string, id: number, 
     const history = await getMessagesByRoomAndUserId(roomId,id);
     let prompt = "";
 
-    // Concatenate previous messages with new user input
     for (const msg of history) {
         prompt += msg.message + "\n\n";
     }

@@ -8,13 +8,6 @@ export async function saveUserMessages(message: string, id: string, roomId: numb
     await execute<OkPacket>(query, [message, 1, timeStamp, id, roomId]);
 }
 
-// export async function getMessagesByUser(id: string): Promise<any> {
-//     const query = `SELECT * FROM ai.messages WHERE userId = ? and role = 0 ORDER BY timestamp DESC LIMIT 1`
-//     const [results]: any = await execute<OkPacket>(query, [id]);
-//     return results;
-// }
-
-
 export async function getMessagesByRoomAndUserId(roomId: number, userId: number): Promise<any> {    
     const query = `SELECT * FROM ai.messages WHERE roomId = ? AND userId = ? ORDER BY timestamp ASC`;
     const [results]: any = await execute<OkPacket>(query, [roomId, userId]);

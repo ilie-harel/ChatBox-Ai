@@ -49,6 +49,7 @@ function SpeechFromText() {
 
     useEffect(() => {
         if (roomSlice.id !== 0) {
+            setMessages([])
             setLoadingData(true)
             apiService.getMessagesByUserIdAndRoomId(roomSlice.id).then(res => setMessages(res)).then(() => {
                 setTimeout(() => {
@@ -56,7 +57,6 @@ function SpeechFromText() {
                 }, 1);
                 setLoadingData(false)
             });
-            // setMessages([])
         }
 
         console.log(roomSlice.id);
@@ -77,7 +77,6 @@ function SpeechFromText() {
         setLoading(true)
         setMessages(messages => [...messages, { role: 1, message: finalTranscript }])
         SpeechRecognition.stopListening()
-
         if (roomSlice.id) {
             const res = await apiService.sendMessageToChatGPT({ message: transcript, room: roomSlice.id });
             if (res.status !== 200) {
@@ -112,7 +111,7 @@ function SpeechFromText() {
                             <WelcomeComponent />
                         </div>
                         :
-                        loadingData && messages.length === 0 ?
+                        loadingData?
                             <div className="loadingDivData">
                                 <LinearProgress color="inherit" style={{ width: '60%' }} />
                             </div>

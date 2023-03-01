@@ -20,10 +20,7 @@ export async function updateRoomNameByRoomId(name:string,roomId:number){
 }
 
 export async function deleteRoomByRoomId(roomId:number){
-    
     const query = 'DELETE FROM rooms WHERE id = ?'
-    const results = await execute<OkPacket>(query,[roomId]);
-    console.log(results);
-    
+    const results = await execute<OkPacket>(query,[roomId]);    
     return results;
 }
