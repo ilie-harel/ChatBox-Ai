@@ -50,6 +50,7 @@ function SpeechFromText() {
     useEffect(() => {
         if (roomSlice.id !== 0) {
             setMessages([])
+
             setLoadingData(true)
             apiService.getMessagesByUserIdAndRoomId(roomSlice.id).then(res => setMessages(res)).then(() => {
                 setTimeout(() => {
@@ -74,7 +75,7 @@ function SpeechFromText() {
 
 
     async function stopListening() {
-        setLoading(true)
+        setLoading(false)
         setMessages(messages => [...messages, { role: 1, message: finalTranscript }])
         SpeechRecognition.stopListening()
         if (roomSlice.id) {
@@ -91,6 +92,7 @@ function SpeechFromText() {
                     setMessages(messages => [...messages, mes[mes.length - 1]])
                     apiService.updateRoomName(mes[0].message, roomSlice.id);
                     dispatch(changeRoomName(mes[0].message));
+                    
                 } catch (e) {
                     alert(e)
                 }
@@ -98,7 +100,6 @@ function SpeechFromText() {
         } else {
             console.log('No roomId');
         }
-        setLoading(false)
     }
 
 
