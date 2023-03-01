@@ -12,6 +12,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import MenuIcon from '@mui/icons-material/Menu';
 import './RoomsSmallScreen.css'
 import { setOverlay } from '../../../../app/overlaySlice';
+import { Link } from "react-router-dom"
 
 export default function RoomsSmallScreen() {
     const [isOpen, setIsOpen] = useState();
@@ -119,6 +120,11 @@ export default function RoomsSmallScreen() {
                                 <option value="es">español</option>
                             </select>
                         </div>
+                        <Link to={"/videos"} className="nav_to_videos_btn">
+                        {/* <LogoutOutlinedIcon className="hover" /> */}
+                        About The Project
+                        {/* <LogoutIcon className="not_hover" /> */}
+                        </Link>
                         <div onClick={logOut} className="LogoutBtnDiv">
                             <LogoutOutlinedIcon className="hover" />
                             <LogoutIcon className="not_hover" />

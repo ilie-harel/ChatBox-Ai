@@ -133,6 +133,16 @@
   .not_hover {
     color: white;
   }
+
+  .nav_to_videos_btn {
+    margin-bottom: 20px;
+    color: rgb(201, 201, 201);
+  }
+  .nav_to_videos_btn:hover {
+    transition: 0.2s;
+    font-size: 17px;
+    margin-bottom: 18px;
+  }
   .LogoutBtnDiv {
     height: 40px;
     width: 100%;
