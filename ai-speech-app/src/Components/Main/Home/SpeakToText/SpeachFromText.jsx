@@ -24,7 +24,7 @@ function SpeechFromText() {
     const roomSlice = useSelector((state) => state.room)
     const bottomRef = useRef(null);
     const chatBoxRef = useRef(null);
-
+    const [isChangedRoom, setIsChangedRoom] = useState(false);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -48,6 +48,7 @@ function SpeechFromText() {
     }, [messages])
 
     useEffect(() => {
+        setIsChangedRoom(true)
         if (roomSlice.id !== 0) {
             setMessages([])
 
@@ -75,6 +76,9 @@ function SpeechFromText() {
 
 
     async function stopListening() {
+        setIsChangedRoom(false)
+
+        
         setLoading(false)
         setMessages(messages => [...messages, { role: 1, message: finalTranscript }])
         SpeechRecognition.stopListening()
@@ -93,10 +97,12 @@ function SpeechFromText() {
                     apiService.updateRoomName(mes[0].message, roomSlice.id);
                     dispatch(changeRoomName(mes[0].message));
                     
+                    setLoading(false)
                 } catch (e) {
                     alert(e)
                 }
             }
+
         } else {
             console.log('No roomId');
         }
@@ -130,7 +136,7 @@ function SpeechFromText() {
                                             {m.role === 0 ?
                                                 <div key={m.id} className={className}>
                                                     <CodeIcon fontSize="large" />
-                                                    {isLast ?
+                                                    {isLast && !isChangedRoom ?
                                                         <TypeAnimation
                                                             sequence={[m.message]}
                                                             wrapper="p"
@@ -145,7 +151,7 @@ function SpeechFromText() {
                                                 :
                                                 <div key={m.id} className={className}>
                                                     <DataObjectIcon fontSize="large" />
-                                                    {isLast ?
+                                                    {isLast  && !isChangedRoom ?
                                                         <TypeAnimation
                                                             sequence={[m.message]}
                                                             wrapper="p"
