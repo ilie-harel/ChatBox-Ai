@@ -23,6 +23,8 @@ function SpeechFromText() {
     const [loadingData, setLoadingData] = useState(false);
     const roomSlice = useSelector((state) => state.room)
     const bottomRef = useRef(null);
+    const chatBoxRef = useRef(null);
+
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -39,8 +41,14 @@ function SpeechFromText() {
     }, [finalTranscript, listening]);
 
     useEffect(() => {
+        chatBoxRef.current.scroll({
+            top: chatBoxRef.current.scrollHeight,
+            behavior: 'smooth'
+        });
+    }, [messages])
+
+    useEffect(() => {
         if (roomSlice.id !== 0) {
-            setMessages([])
             setLoadingData(true)
             apiService.getMessagesByUserIdAndRoomId(roomSlice.id).then(res => setMessages(res)).then(() => {
                 setTimeout(() => {
@@ -48,6 +56,7 @@ function SpeechFromText() {
                 }, 1);
                 setLoadingData(false)
             });
+            // setMessages([])
         }
 
         console.log(roomSlice.id);
@@ -97,13 +106,13 @@ function SpeechFromText() {
     return (
         <div className={authSlice.language === 'he' ? "SpeachFromText directionHe" : "SpeachFromText directionEn"}>
             <div className="chatDiv">
-                <div className="chat">
+                <div ref={chatBoxRef} className="chat">
                     {roomSlice.id == 0 ?
                         <div className="welcomeDiv">
                             <WelcomeComponent />
                         </div>
                         :
-                        loadingData ?
+                        loadingData && messages.length === 0 ?
                             <div className="loadingDivData">
                                 <LinearProgress color="inherit" style={{ width: '60%' }} />
                             </div>

@@ -33,11 +33,12 @@
     width: 90%;
     overflow: auto;
     box-sizing: border-box;
-    padding: 10px;
+    padding:0 40px;
     display: flex;
-    height: 80%;
+    height: 85%;
     margin: auto auto;
     flex-direction: column;
+    /* scroll-behavior: smooth; */
 }
 
 .welcomeDiv,
@@ -274,10 +275,12 @@
         padding: 0px;
         display: flex;
         flex-direction: column;
+        align-items: center;
         justify-content: space-around;
     }
     .chat {
         margin: 0;
+        padding: 0;
     }   
     .SpeachFromTextButtons {
         width: 100%;
