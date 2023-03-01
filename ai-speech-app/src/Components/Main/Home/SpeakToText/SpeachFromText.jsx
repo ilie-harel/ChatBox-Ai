@@ -41,6 +41,7 @@ function SpeechFromText() {
     }, [finalTranscript, listening]);
 
     useEffect(() => {
+        
         chatBoxRef.current.scroll({
             top: chatBoxRef.current.scrollHeight,
             behavior: 'smooth'
@@ -54,15 +55,15 @@ function SpeechFromText() {
 
             setLoadingData(true)
             apiService.getMessagesByUserIdAndRoomId(roomSlice.id).then(res => setMessages(res)).then(() => {
+                setLoadingData(false)
                 setTimeout(() => {
                     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
                 }, 1);
-                setLoadingData(false)
             });
         }
 
         console.log(roomSlice.id);
-    }, [roomSlice])
+    }, [roomSlice.id])
 
 
 
@@ -104,6 +105,7 @@ function SpeechFromText() {
             }
 
         } else {
+        setIsChangedRoom(false)
             console.log('No roomId');
         }
     }
