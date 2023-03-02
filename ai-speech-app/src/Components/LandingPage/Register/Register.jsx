@@ -6,7 +6,8 @@ import { apiService } from '../../../Service/ApiService';
 import { useDispatch } from 'react-redux';
 import { loginRedux } from '../../../app/authSlice';
 import { toastsFunctions } from '../../../helpers/toastsFunctions';
-import img from "../../LandingPage/ai8-2.jpg"
+import img from "../../LandingPage/ai-sound.jpg"
+import img2 from "../../LandingPage/ai8-2-improve.jpeg"
 import { TypeAnimation } from 'react-type-animation';
 
 export default function Register() {

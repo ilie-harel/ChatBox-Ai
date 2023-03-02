@@ -1,7 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
 import Main from "../src/Components/Main/Main"
-import Header from './Components/Header/Header';
 import LandingPage from './Components/LandingPage/LandingPage';
 import { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';

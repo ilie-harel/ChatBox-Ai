@@ -96,11 +96,9 @@ export default function Rooms() {
           <option value="es">español</option>
         </select>
       </div>
-        <Link to={"/videos"} className="nav_to_videos_btn">
-          {/* <LogoutOutlinedIcon className="hover" /> */}
+        {/* <Link to={"/videos"} className="nav_to_videos_btn">
           About The Project
-          {/* <LogoutIcon className="not_hover" /> */}
-        </Link>
+        </Link> */}
       <div onClick={logOut} className="LogoutBtnDiv">
         <LogoutOutlinedIcon className="hover" />
         <LogoutIcon className="not_hover" />

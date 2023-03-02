@@ -71,24 +71,46 @@
 
 .Login_Container .Login>div form button {
     width: 80%;
-    padding: 15px;
-    border: none;
-    background-color: #2e2e2e;
-    color: white;
-    font-weight: 750;
-    border-radius: 6px;
+    align-self: center;
+    background-color: #fff;
+    background-image: none;
+    background-position: 0 90%;
+    background-repeat: repeat no-repeat;
+    background-size: 4px 3px;
+    border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
+    border-style: solid;
+    border-width: 2px;
+    box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
+    box-sizing: border-box;
+    color: #41403e;
     cursor: pointer;
-    box-shadow: 0px 5px 13px -4px rgba(46, 46, 46, 0.75);
-    -webkit-box-shadow: 0px 5px 13px -4px rgba(46, 46, 46, 0.75);
-    -moz-box-shadow: 0px 5px 13px -4px rgba(46, 46, 46, 0.75);
+    display: inline-block;
+    font-family: Neucha, sans-serif;
+    font-size: 1rem;
+    line-height: 23px;
+    outline: none;
+    padding: .75rem;
+    text-decoration: none;
+    transition: all 235ms ease-in-out;
+    border-bottom-left-radius: 15px 255px;
+    border-bottom-right-radius: 225px 15px;
+    border-top-left-radius: 255px 15px;
+    border-top-right-radius: 15px 225px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
 }
 
 .Login_Container .Login>div form button:hover {
-    transition: 0.2s;
+    /* transition: 0.2s;
     background-color: #121212;
     box-shadow: 0px 5px 7px -1px rgba(102, 102, 102, 0.75);
     -webkit-box-shadow: 0px 5px 7px -1px rgba(102, 102, 102, 0.75);
-    -moz-box-shadow: 0px 5px 7px -1px rgba(102, 102, 102, 0.75);
+    -moz-box-shadow: 0px 5px 7px -1px rgba(102, 102, 102, 0.75); */
+
+    box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
+    transform: translate3d(0, 2px, 0);
+
 }
 
 .Login_Container .Login>div form .link_to_register_in_login_form {
