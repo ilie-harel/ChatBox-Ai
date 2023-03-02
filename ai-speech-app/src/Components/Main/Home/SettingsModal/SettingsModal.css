@@ -19,3 +19,54 @@
     background-color: #0e4b3d;
 
 }
+
+.SettingsModalDiv h2{
+    margin: 0;
+}
+
+.SettingsModalBtns {
+    display: flex;
+    width: 50%;
+    margin: auto auto;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+
+.cancel_settings {
+    height: 30px;
+    width: 80px;
+    border: none;
+    outline: 2px solid var(--color3);
+    border-radius: 5px;
+    background-color: white;
+    color: var(--color3);
+    cursor: pointer;
+}
+
+.cancel_settings:hover {
+    transition: 0.2s;
+    font-size: 14px;
+}
+
+.save_settings {
+    height: 30px;
+    width: 80px;
+    border: none;
+    outline: 2px solid var(--color3);
+    border-radius: 5px;
+    /* background-color: white; */
+    background-color: var(--color3);
+    cursor: pointer;
+    color: white;
+}
+
+.save_settings:hover {
+    transition: 0.2s;
+    font-size: 14px;
+}
+
+.disable_save{
+    background-color: #ccc;
+}

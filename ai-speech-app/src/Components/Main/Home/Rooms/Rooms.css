@@ -101,7 +101,7 @@
   .AddBtnDiv {
     height: 40px;
     width: 100%;
-    border: 2px solid #0e4b3d;
+    border: 2px solid var(--color3);
     border-radius: 5px;
     display: flex;
     justify-content: center;
@@ -111,7 +111,7 @@
   }
   
   .AddBtnDiv:hover {
-    background-color: #0e4b3d;
+    background-color: var(--color3);
   }
   
   .AddBtnDiv .not_hover {
@@ -148,7 +148,7 @@
   .LogoutBtnDiv {
     height: 40px;
     width: 100%;
-    border: 2px solid #0e4b3d;
+    border: 2px solid var(--color3);
     border-radius: 5px;
     display: flex;
     justify-content: center;
@@ -162,7 +162,7 @@
   }
   
   .LogoutBtnDiv:hover {
-    background-color: #0e4b3d;
+    background-color: var(--color3);
   }
   
   .LogoutBtnDiv .not_hover {
