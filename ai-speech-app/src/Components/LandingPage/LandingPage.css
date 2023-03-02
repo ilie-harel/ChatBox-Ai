@@ -33,9 +33,18 @@
   border: 2px solid #333;
   border-radius: 25px;
   transition: all 0.2s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 130px;
 }
 
 .LandingPageHeader a:hover {
   background-color: #333;
   color: #fff;
 }
+
+.landing_page_logo {
+  cursor: pointer;
+}
+

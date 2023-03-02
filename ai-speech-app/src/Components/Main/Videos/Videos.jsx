@@ -27,10 +27,6 @@ const [video, setVideo] = useState("english")
                         <VideoHebrew />
                     </div>
                 </div>
-
-                <Link to={"/"} className="nav_to_app_btn" >
-                    Let's Start!
-                </Link>
         </div>
     );
 }
