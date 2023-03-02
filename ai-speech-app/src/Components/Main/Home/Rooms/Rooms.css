@@ -143,6 +143,8 @@
     font-size: 17px;
     margin-bottom: 18px;
   } */
+
+ 
   .LogoutBtnDiv {
     height: 40px;
     width: 100%;
@@ -153,6 +155,10 @@
     align-items: center;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
+  }
+
+  .SettinsDiv{
+    width: 100%;
   }
   
   .LogoutBtnDiv:hover {

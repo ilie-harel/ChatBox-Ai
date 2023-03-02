@@ -11,8 +11,7 @@ import { apiService } from "../../../../Service/ApiService";
 import { changeRoomId, changeRoomName } from "../../../../app/roomSlice";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import DeleteIcon from '@mui/icons-material/Delete';
-
-import { Link } from "react-router-dom"
+import SettingsModal from "../SettingsModal/SettingsModal";
 
 export default function Rooms() {
   const dispatch = useDispatch();
@@ -87,7 +86,7 @@ export default function Rooms() {
           </div>
         ))}
       </div>
-      <div className="changeLanguageDiv">
+      {/* <div className="changeLanguageDiv">
         <select onChange={(e) => changeLanguage(e.target.value)}>
           <option value="">Change Language</option>
           <option value="he">Hebrew</option>
@@ -95,10 +94,10 @@ export default function Rooms() {
           <option value="fr">Français</option>
           <option value="es">español</option>
         </select>
+      </div> */}
+      <div className="SettinsDiv">
+        <SettingsModal setSelectedRoomId={setSelectedRoomId} setRooms={setRooms}/>
       </div>
-        {/* <Link to={"/videos"} className="nav_to_videos_btn">
-          About The Project
-        </Link> */}
       <div onClick={logOut} className="LogoutBtnDiv">
         <LogoutOutlinedIcon className="hover" />
         <LogoutIcon className="not_hover" />

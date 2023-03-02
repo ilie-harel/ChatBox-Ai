@@ -13,6 +13,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import './RoomsSmallScreen.css'
 import { setOverlay } from '../../../../app/overlaySlice';
 import { Link } from "react-router-dom"
+import SettingsModal from '../SettingsModal/SettingsModal';
 
 export default function RoomsSmallScreen() {
     const [isOpen, setIsOpen] = useState();
@@ -120,9 +121,10 @@ export default function RoomsSmallScreen() {
                                 <option value="es">español</option>
                             </select>
                         </div>
-                        {/* <Link to={"/videos"} className="nav_to_videos_btn">
-                        About The Project
-                        </Link> */}
+                       
+                        <div className="SettinsDiv">
+                            <SettingsModal setSelectedRoomId={setSelectedRoomId} setRooms={setRooms} />
+                        </div>
                         <div onClick={logOut} className="LogoutBtnDiv">
                             <LogoutOutlinedIcon className="hover" />
                             <LogoutIcon className="not_hover" />

@@ -1,0 +1,21 @@
+.SettingsModal{
+    width: 100%;
+}
+
+.SettinsBtnDiv {
+    height: 40px;
+    width: 100%;
+    border: 2px solid #0e4b3d;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    margin-bottom: 10px;
+}
+
+.SettinsBtnDiv:hover {
+    background-color: #0e4b3d;
+
+}
