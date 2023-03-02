@@ -48,3 +48,60 @@
   cursor: pointer;
 }
 
+
+
+
+.LandingPage {
+  /* background-color: black; */
+  /* position: relative; */
+}
+
+.wave {
+  background: var(--color3);
+  border-radius: 1000% 1000% 0 0;
+  position: fixed;
+  width: 200%;
+  height: 8em;
+  animation: wave 15s -3s linear infinite;
+  transform: translate3d(0, 0, 0);
+  opacity: 0.4;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.wave:nth-of-type(2) {
+  bottom: -1.25em;
+  background: var(--color3);
+  animation: wave 27s linear reverse infinite;
+  opacity: 0.4;
+}
+
+.wave:nth-of-type(3) {
+  background: var(--color2);
+  bottom: -2.5em;
+  animation: wave 30s -1s reverse infinite;
+  opacity: 1;
+}
+
+@keyframes wave {
+  2% {
+      transform: translateX(1);
+  }
+
+  25% {
+      transform: translateX(-25%);
+  }
+
+  50% {
+      transform: translateX(-50%);
+  }
+
+  75% {
+      transform: translateX(-25%);
+  }
+
+  100% {
+      transform: translateX(1);
+  }
+}

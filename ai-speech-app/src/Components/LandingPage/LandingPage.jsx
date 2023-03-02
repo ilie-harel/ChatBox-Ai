@@ -34,6 +34,14 @@ export default function LandingPage() {
         <Route path='/videos' element={<Videos />}></Route>
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
+
+      <div>
+
+
+      <div class="wave"></div>
+                <div class="wave"></div>
+                <div class="wave"></div>
+      </div>
     </div>
   )
 }

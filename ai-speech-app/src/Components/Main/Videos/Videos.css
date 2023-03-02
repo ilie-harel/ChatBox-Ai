@@ -1,12 +1,18 @@
 .Videos {
-  height: 100%;
+  height: 60%;
   display: flex;
   justify-content: center;
-  /* flex-direction: column; */
-  align-items: center;
+  flex-direction: column;
   gap: 50px;
+  position: relative;
 }
 
+.Videos_Conatiner {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    align-items: center;
+}
 .display_video {
   display: block;
 }
@@ -121,3 +127,9 @@
 .nav_to_app_btn:focus {
   box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
 }
+
+
+
+
+
+

@@ -10,6 +10,7 @@ function speakText(sen) {
         const voice = voices.find((voice) => {
             return voice.lang.includes(language)
         });
+        console.log(voices);
         if (voice) {
             message.voice = voice;
             window.speechSynthesis.speak(message);
