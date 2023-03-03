@@ -4,7 +4,7 @@
   justify-content: center;
   flex-direction: column;
   gap: 50px;
-  position: relative;
+    z-index: 1;
 }
 
 .Videos_Conatiner {

@@ -22,17 +22,7 @@ import italyFlag from "../../../../assests/flags/italy.png";
 import netherlandsFlag from "../../../../assests/flags/netherlands.png";
 import chinaFlag from "../../../../assests/flags/china.png";
 
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  boxShadow: 24,
-  bgcolor: "background.paper",
-  borderRadius: "10px",
-  p: 4,
-};
+
 
 const languages = [
     { label: "Hebrew", value: "he", img: israelFlag },
@@ -52,7 +42,19 @@ export default function SettingsModal(props) {
   const handleClose = () => setOpen(false);
   const authSlice = useSelector((state) => state.auth);
   const [newLanguage, setNewLanguage] = useState(authSlice.language);
+  const smallScreen = window.matchMedia("(max-width: 1000px)").matches;
 
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: smallScreen? 270 : 400,
+    boxShadow: 24,
+    bgcolor: "background.paper",
+    borderRadius: "10px",
+    p: 4,
+  };
   async function Save() {
     if (newLanguage === "") return;
     try {

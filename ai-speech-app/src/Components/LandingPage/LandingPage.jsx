@@ -7,6 +7,7 @@ import logo from './logo.png'
 import Videos from '../Main/Videos/Videos'
 import NotFound from '../NotFound/NotFound'
 import { useState } from "react";
+import BackgroundCover from './BackgroundCover/BackgroundCover'
 
 export default function LandingPage() {
   const [path, setPath] = useState("/")
@@ -34,14 +35,16 @@ export default function LandingPage() {
         <Route path='/videos' element={<Videos />}></Route>
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
-
+{/* 
       <div>
 
 
       <div class="wave"></div>
                 <div class="wave"></div>
                 <div class="wave"></div>
-      </div>
+      </div> */}
+
+      <BackgroundCover/>
     </div>
   )
 }

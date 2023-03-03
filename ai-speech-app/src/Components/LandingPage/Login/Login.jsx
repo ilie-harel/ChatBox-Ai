@@ -35,10 +35,6 @@ export default function Login() {
                     <img src={img} alt="" />
                 </div>
                 <div className="form_container">
-                    <form onSubmit={handleSubmit(loginUser)}>
-                        {/* <div className='Login_ContainerLogo'>
-                            <img src={logo} alt="" />
-                        </div> */}
                         <TypeAnimation
                             sequence={['Sign into your account']}
                             wrapper="h3"
@@ -46,6 +42,10 @@ export default function Login() {
                             speed={50}
                             className={'signInAnimation'}
                         />
+                    <form onSubmit={handleSubmit(loginUser)}>
+                        {/* <div className='Login_ContainerLogo'>
+                            <img src={logo} alt="" />
+                        </div> */}
                         <input placeholder="Email" type="email" {...register("email", { required: true })} />
                         <input placeholder="Password" type="password" {...register("password", { required: true, minLength: 4 })} />
                         <button type="submit">LOGIN</button>

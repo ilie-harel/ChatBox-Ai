@@ -55,7 +55,7 @@
   /* background-color: black; */
   /* position: relative; */
 }
-
+/* 
 .wave {
   background: var(--color3);
   border-radius: 1000% 1000% 0 0;
@@ -104,4 +104,4 @@
   100% {
       transform: translateX(1);
   }
-}
+} */

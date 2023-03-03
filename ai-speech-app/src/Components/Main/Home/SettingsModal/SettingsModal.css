@@ -39,6 +39,7 @@
 .SettingsModalBtns {
     display: flex;
     width: 50%;
+    gap: 20px;
     margin: auto auto;
     justify-content: space-around;
     align-items: center;
@@ -89,4 +90,10 @@
     background-color: var(--color3);
     color: white;
     
+}
+
+@media only screen and (max-width: 1000px) {
+    .SettingsModalDiv {
+        max-width: 320px;
+    }
 }

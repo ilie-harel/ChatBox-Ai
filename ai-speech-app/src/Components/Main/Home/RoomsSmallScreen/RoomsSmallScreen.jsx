@@ -112,15 +112,6 @@ export default function RoomsSmallScreen() {
                                 </div>
                             ))}
                         </div>
-                        <div className="changeLanguageDiv">
-                            <select defaultValue={authSlice.language} onChange={(e) => changeLanguage(e.target.value)}>
-                                <option value="">Change Language</option>
-                                <option value="he">Hebrew</option>
-                                <option value="en">English</option>
-                                <option value="fr">Français</option>
-                                <option value="es">español</option>
-                            </select>
-                        </div>
                        
                         <div className="SettinsDiv">
                             <SettingsModal setSelectedRoomId={setSelectedRoomId} setRooms={setRooms} />
