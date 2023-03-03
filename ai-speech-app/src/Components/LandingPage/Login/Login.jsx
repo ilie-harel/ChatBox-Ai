@@ -51,7 +51,6 @@ export default function Login() {
                         <div className='googleLoginDiv'>
                             <GoogleRegister />
                         </div>
-
                         <Link className="link_to_register_in_login_form" to={"/register"}>Don't have an account? Register here</Link>
                         <p className="terms_login_form">Terms of use. Privacy policy</p>
                     </form>

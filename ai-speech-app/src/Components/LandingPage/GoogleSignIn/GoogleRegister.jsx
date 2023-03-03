@@ -28,7 +28,7 @@ const GoogleRegister = () => {
     }
 
     return (
-        // <div className='GoogleRegister'>
+        <div className='GoogleRegister'>
 
             <GoogleLogin
                 onSuccess={credentialResponse => {
@@ -46,7 +46,7 @@ const GoogleRegister = () => {
                     toastsFunctions.toastError('Register Failed');
                 }}
             />
-        // </div>
+        </div>
     );
 };
 
