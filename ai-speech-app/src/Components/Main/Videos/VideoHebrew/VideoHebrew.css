@@ -1,5 +1,8 @@
 .VideoHebrew {
-	
+    height: 409.5px;
+    outline: 2px solid black;
+    box-shadow: #fff 1px 1px 0 -2px, #000 6px 6px 0 1px;
+    border-radius: 20px;
 }
 
 .divTest {

@@ -8,7 +8,7 @@ import { loginRedux } from '../../../app/authSlice';
 import { toastsFunctions } from '../../../helpers/toastsFunctions';
 import img from "../../LandingPage/ai12.jpg"
 import { TypeAnimation } from 'react-type-animation';
-import GoogleSignInButton from '../GoogleSignIn/GoogleSignIn';
+import GoogleRegister from '../GoogleSignIn/GoogleRegister';
 
 export default function Login() {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -28,6 +28,7 @@ export default function Login() {
         }
     }
 
+
     return (
         <div className="Login_Container">
 
@@ -36,21 +37,21 @@ export default function Login() {
                     <img src={img} alt="" />
                 </div>
                 <div className="form_container">
-                        <TypeAnimation
-                            sequence={['Sign into your account']}
-                            wrapper="h3"
-                            cursor={true}
-                            speed={50}
-                            className={'signInAnimation'}
-                        />
+                    <TypeAnimation
+                        sequence={['Sign into your account']}
+                        wrapper="h3"
+                        cursor={true}
+                        speed={50}
+                        className={'signInAnimation'}
+                    />
                     <form onSubmit={handleSubmit(loginUser)}>
-                        {/* <div className='Login_ContainerLogo'>
-                            <img src={logo} alt="" />
-                        </div> */}
                         <input placeholder="Email" type="email" {...register("email", { required: true })} />
                         <input placeholder="Password" type="password" {...register("password", { required: true, minLength: 4 })} />
                         <button type="submit">LOGIN</button>
-                        <GoogleSignInButton />
+                        <div className='googleLoginDiv'>
+                            <GoogleRegister />
+                        </div>
+
                         <Link className="link_to_register_in_login_form" to={"/register"}>Don't have an account? Register here</Link>
                         <p className="terms_login_form">Terms of use. Privacy policy</p>
                     </form>

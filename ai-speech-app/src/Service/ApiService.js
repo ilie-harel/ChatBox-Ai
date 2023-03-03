@@ -18,7 +18,7 @@ class ApiService {
         return results;
     }
 
-    async changeUserLanguage(language){
+    async changeUserLanguage(language) {
         const token = getToken()
         const results = fetch(`http://localhost:3046/users/language?lan=${language}`, {
             method: 'PUT',
@@ -32,6 +32,15 @@ class ApiService {
         const data = await (await results).json();
         return data;
     }
+
+
+    // google users
+
+    async googleAuth(user) {
+        const results = await axios.post('http://localhost:3046/google/auth', user);
+        return results;
+    }
+
 
 
 
@@ -117,15 +126,15 @@ class ApiService {
 
     async updateRoomName(name, roomId) {
         const token = getToken()
-        const results = axios.post(`http://localhost:3046/rooms/edit/${roomId}?name=${name}`,{
-            headers:{
+        const results = axios.post(`http://localhost:3046/rooms/edit/${roomId}?name=${name}`, {
+            headers: {
                 'authorization': `Bearer ${token}`,
             }
         })
         return results;
     }
 
-    async deleteRoom(roomId){
+    async deleteRoom(roomId) {
         const token = getToken()
         const results = await fetch(`http://localhost:3046/rooms/delete/${roomId}`, {
             method: 'DELETE',

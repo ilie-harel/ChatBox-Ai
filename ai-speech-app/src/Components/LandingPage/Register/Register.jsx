@@ -21,6 +21,7 @@ import brazilFlag from "../../../assests/flags/brazil.png";
 import italyFlag from "../../../assests/flags/italy.png";
 import netherlandsFlag from "../../../assests/flags/netherlands.png";
 import chinaFlag from "../../../assests/flags/china.png";
+import GoogleRegister from "../GoogleSignIn/GoogleRegister";
 
 export default function Register() {
   const {
@@ -53,7 +54,7 @@ export default function Register() {
         Navigate("/");
       }
     } catch (e) {
-      toastsFunctions.toastError(e.response.data);
+      toastsFunctions.toastError(`${e.response.data}, try logging with google`);
     }
   }
 
@@ -65,7 +66,6 @@ export default function Register() {
         </div>
         <div className="form_container">
           <form onSubmit={handleSubmit(userRegister)}>
-            {/* <p className="signUp_text_form typewriter">Sign up for FREE</p> */}
             <TypeAnimation
               sequence={["Sign up for FREE"]}
               wrapper="h3"
@@ -135,7 +135,7 @@ export default function Register() {
                   label="Choose a country"
                   inputProps={{
                     ...params.inputProps,
-                    autoComplete: "new-password", // disable autocomplete and autofill
+                    autoComplete: "new-password", 
                   }}
                 />
               )}
@@ -144,6 +144,7 @@ export default function Register() {
             <button className="submit_btn_register" type="submit">
               REGISTER
             </button>
+
             <Link className="link_to_login_in_register_form" to={"/"}>
               Already a member? login
             </Link>

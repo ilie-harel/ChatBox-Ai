@@ -5,12 +5,7 @@ import { loadFull } from "tsparticles";
 
 export default function BackgroundCover() {
   const particlesInit = async (main) => {
-    console.log(main);
     await loadFull(main);
-  };
-
-  const particlesLoaded = (container) => {
-    console.log(container);
   };
 
   return (
@@ -18,7 +13,6 @@ export default function BackgroundCover() {
       <Particles
         id="tsparticles"
         init={particlesInit}
-        loaded={particlesLoaded}
         options={{
           fpsLimit: 120,
           interactivity: {

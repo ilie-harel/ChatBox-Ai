@@ -7,3 +7,11 @@ export interface UserModel{
     password:string,
     language:string
 }
+
+export interface GoogleUserModel{
+    id:number,
+    firstName:string,
+    lastName:string,
+    email:string,
+    language:string
+}

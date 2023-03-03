@@ -12,6 +12,7 @@ import { changeRoomId, changeRoomName } from "../../../../app/roomSlice";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import DeleteIcon from '@mui/icons-material/Delete';
 import SettingsModal from "../SettingsModal/SettingsModal";
+import { googleLogout } from '@react-oauth/google';
 
 export default function Rooms() {
   const dispatch = useDispatch();
@@ -27,6 +28,7 @@ export default function Rooms() {
 
   function logOut() {
     dispatch(logoutRedux());
+    googleLogout();
   }
 
   async function addRoom() {
@@ -46,22 +48,6 @@ export default function Rooms() {
       dispatch(changeRoomId(0))
       dispatch(changeRoomName(''))
     });
-  }
-
-  async function changeLanguage(language) {
-    if (language === "") return;
-    try {
-      const results = await apiService.changeUserLanguage(language);
-      dispatch(loginRedux(results));
-      dispatch(changeRoomId(0))
-      dispatch(changeRoomName(''));
-      apiService.getRoomsByUserId().then(async (res) => {
-        setRooms(res);
-      });
-      setSelectedRoomId(null)
-    } catch (e) {
-      console.log(e);
-    }
   }
 
   return (
@@ -86,15 +72,6 @@ export default function Rooms() {
           </div>
         ))}
       </div>
-      {/* <div className="changeLanguageDiv">
-        <select onChange={(e) => changeLanguage(e.target.value)}>
-          <option value="">Change Language</option>
-          <option value="he">Hebrew</option>
-          <option value="en">English</option>
-          <option value="fr">Français</option>
-          <option value="es">español</option>
-        </select>
-      </div> */}
       <div className="SettinsDiv">
         <SettingsModal setSelectedRoomId={setSelectedRoomId} setRooms={setRooms}/>
       </div>
