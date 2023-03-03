@@ -9,6 +9,7 @@ import { toastsFunctions } from '../../../helpers/toastsFunctions';
 import img from "../../LandingPage/ai12.jpg"
 import { TypeAnimation } from 'react-type-animation';
 import GoogleRegister from '../GoogleSignIn/GoogleRegister';
+import FacebookSignIn from '../FacebookSignIn/FacebookSignIn';
 
 export default function Login() {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -50,6 +51,7 @@ export default function Login() {
                         <button type="submit">LOGIN</button>
                         <div className='googleLoginDiv'>
                             <GoogleRegister />
+                            <FacebookSignIn />
                         </div>
                         <Link className="link_to_register_in_login_form" to={"/register"}>Don't have an account? Register here</Link>
                         <p className="terms_login_form">Terms of use. Privacy policy</p>
