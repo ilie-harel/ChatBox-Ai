@@ -8,12 +8,16 @@ import { store } from './app/store';
 import './index.css';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
+import { GoogleOAuthProvider } from '@react-oauth/google';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
     <BrowserRouter>
-      <App />
+      <GoogleOAuthProvider clientId='542417165126-tajqofllkjmbkpjm2uvvg6tskvio897g.apps.googleusercontent.com'>
+        <App />
+      </GoogleOAuthProvider>
       <ToastContainer />
     </BrowserRouter>
   </Provider>
