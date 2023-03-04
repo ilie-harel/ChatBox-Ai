@@ -106,7 +106,7 @@ export default function Register() {
             {errors.password?<div style={{display: "none"}}> {toastsFunctions.toastError('password min length 4') }</div> : <></>}
             <Autocomplete
               id="country-select-demo"
-              sx={{ width:smallScreen? 200: 300 }}
+              sx={{ width:'85%' ,marginTop:'10px'}}
               options={languages}
               autoHighlight
               getOptionLabel={(option) => option.label}
@@ -133,7 +133,7 @@ export default function Register() {
               renderInput={(params) => (
                 <TextField
                   {...params}
-                  label="Choose a country"
+                  label="Choose a language"
                   inputProps={{
                     ...params.inputProps,
                     autoComplete: "new-password", 

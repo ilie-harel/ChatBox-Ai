@@ -126,7 +126,7 @@ export default function SettingsModal(props) {
                 renderInput={(params) => (
                   <TextField
                     {...params}
-                    label="Choose a country"
+                    label="Choose a language"
                     inputProps={{
                       ...params.inputProps,
                       autoComplete: "new-password", // disable autocomplete and autofill

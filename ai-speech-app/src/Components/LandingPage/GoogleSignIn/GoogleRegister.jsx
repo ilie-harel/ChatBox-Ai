@@ -21,7 +21,7 @@ const GoogleRegister = () => {
             if (res.status === 200) {
                 console.log(res);
                 dispatch(loginRedux(res.data))
-                toastsFunctions.toastInfo("head to the settings to choose a different language");
+                toastsFunctions.toastInfo("Head to the settings to choose a different language");
                 Navigate("/");
             }
         } catch (e) {
