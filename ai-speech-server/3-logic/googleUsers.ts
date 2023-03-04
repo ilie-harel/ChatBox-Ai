@@ -7,12 +7,14 @@ export async function googleRegister(user: GoogleUserModel) {
     const checkIfEmailExistsQuery = `SELECT * FROM users WHERE email = ?`
     const [checkIfEmailExistsResults] = await execute<OkPacket>(checkIfEmailExistsQuery, [email]);
     console.log(checkIfEmailExistsResults.length);
+
     if (checkIfEmailExistsResults.length > 0) {
         console.log(checkIfEmailExistsResults);
-        const getIdQuery = `SELECT id FROM users WHERE email = ?`
+        const getIdQuery = `SELECT id,language FROM users WHERE email = ?`
         const [getIdResults] = await execute<OkPacket>(getIdQuery, [email]);
+        console.log(getIdResults);
         
-        return ['Email already exists', getIdResults[0].id];
+        return [false, getIdResults[0].id,getIdResults[0].language];
     }
     const query = 'INSERT INTO users(firstName,lastName,email,language) VALUES(?,?,?,?)'
     const results = await execute<OkPacket>(query, [firstName, lastName, email, language]);

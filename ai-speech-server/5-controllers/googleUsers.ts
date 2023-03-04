@@ -10,8 +10,9 @@ GoogleUsersRoute.post('/google/auth', async (req, res) => {
         const results = await googleRegister(user)
         console.log(results);
 
-        if (results[0] === 'Email already exists') {
+        if (results[0] === false) {
             user.id = results[1]
+            user.language = results[2]
             const token = await generateToken(user)
             res.status(200).json(token);
             return;
