@@ -9,6 +9,7 @@ export const UserRoute = express.Router();
 
 UserRoute.post('/users/register', async (req, res) => {
     const user: UserModel = req.body;
+
     user.password = hashedPassword(user.password)
     try {
         const results = await register(user)

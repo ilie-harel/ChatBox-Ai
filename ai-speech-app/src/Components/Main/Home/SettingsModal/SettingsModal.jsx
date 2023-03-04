@@ -25,19 +25,19 @@ import chinaFlag from "../../../../assests/flags/china.png";
 
 
 const languages = [
-    { label: "Hebrew", value: "he", img: israelFlag },
-    { label: "English", value: "en", img: USAFlag },
-    { label: "France", value: "fr", img: franceFlag },
-    { label: "Espaniol", value: "es", img: spainFlag },
-    { label: "Italian", value: "it", img: italyFlag },
-    { label: "Português", value: "pt", img: brazilFlag },
-    { label: "普通话", value: "zh", img: chinaFlag },
-    { label: "Dutch", value: "nl", img: netherlandsFlag },
-  ];
+  { label: "Hebrew", value: "he", img: israelFlag },
+  { label: "English", value: "en", img: USAFlag },
+  { label: "France", value: "fr", img: franceFlag },
+  { label: "Espaniol", value: "es", img: spainFlag },
+  { label: "Italian", value: "it", img: italyFlag },
+  { label: "Português", value: "pt", img: brazilFlag },
+  { label: "普通话", value: "zh", img: chinaFlag },
+  { label: "Dutch", value: "nl", img: netherlandsFlag },
+];
 
 export default function SettingsModal(props) {
   const dispatch = useDispatch();
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(props.show);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const authSlice = useSelector((state) => state.auth);
@@ -49,7 +49,7 @@ export default function SettingsModal(props) {
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    width: smallScreen? 270 : 400,
+    width: smallScreen ? 270 : 400,
     boxShadow: 24,
     bgcolor: "background.paper",
     borderRadius: "10px",
@@ -77,9 +77,13 @@ export default function SettingsModal(props) {
 
   return (
     <div className="SettingsModal">
-      <div onClick={handleOpen} className="SettinsBtnDiv">
-        <SettingsIcon style={{ color: "white" }} />
-      </div>
+      {
+        props.show ? <></> :
+          <div onClick={handleOpen} className="SettinsBtnDiv">
+
+            <SettingsIcon style={{ color: "white" }} />
+          </div>
+      }
       <Modal
         open={open}
         onClose={handleClose}

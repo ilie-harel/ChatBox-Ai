@@ -23,6 +23,11 @@ function Videos() {
                 />
             </div>
             <div className="Videos_Conatiner">
+                <div className="choose_language_container">
+
+                    <button onClick={() => setVideo("english")} className={video === "english" ? 'active choose_language' : 'choose_language'}>English</button>
+                    <button onClick={() => setVideo("hebrew")} className={video === "hebrew" ? 'active choose_language' : 'choose_language'}>עברית</button>
+                </div>
                 <div className="video_display">
                     <div className={video === "english" ? 'display_video' : 'dont_display_video'}>
                         <VideoEnglish />
@@ -33,11 +38,6 @@ function Videos() {
                     </div>
                 </div>
             </div>
-                <div className="choose_language_container">
-
-                    <button onClick={() => setVideo("english")} className={video === "english" ? 'active choose_language' : 'choose_language'}>English</button>
-                    <button onClick={() => setVideo("hebrew")} className={video === "hebrew" ? 'active choose_language' : 'choose_language'}>עברית</button>
-                </div>
 
         </div>
     );
