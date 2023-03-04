@@ -89,7 +89,7 @@
 }
 
 .Login_Container .Login>div form .link_to_register_in_login_form {
-    margin-top: 40px;
+    margin: 20px 0;
     text-decoration: none;
     color: #1c1c1c;
 }
@@ -166,7 +166,7 @@
 
 @media only screen and (max-width: 500px) {
     .Login_Container .Login {
-        width: max-content;
+        /* width: max-content; */
         height: max-content;
 
     }
