@@ -133,3 +133,40 @@
 
 
 
+@media only screen and (max-width: 1000px) {
+.Videos_Conatiner {
+  flex-direction: column;
+}
+.choose_language_container {
+  flex-direction: row;
+}
+.video_title {
+  text-align: center;
+}
+/* .iframe {
+  height: 409.5px;
+  width: 100%;
+} */
+
+/* .display_video  iframe {
+  width: 510px;
+} */
+
+}
+
+/* @media only screen and (max-width: 680px) {
+  .display_video  iframe {
+    width: 450px;
+  }
+
+}
+
+} */
+@media only screen and (max-width: 480px) {
+  .choose_language {
+    padding: 5px 36px;
+  }
+.video_title {
+  font-size: 18px;
+}
+}

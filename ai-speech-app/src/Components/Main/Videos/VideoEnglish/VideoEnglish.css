@@ -8,3 +8,55 @@
     box-shadow: #fff 1px 1px 0 -2px, #000 6px 6px 0 1px;
     border-radius: 20px;
 }
+
+@media only screen and (max-width: 1000px) {
+    .VideoEnglish {
+        height: 327.6px;
+        width: 582.4px;
+    }
+
+    .VideoEnglish iframe {
+        height: 327.6px;
+        width: 582.4px;
+    }
+
+}
+
+@media only screen and (max-width: 700px) {
+    .VideoEnglish {
+        height: 262.1px;
+        width: 465.9px;
+    }
+
+    .VideoEnglish iframe {
+        height: 262.1px;
+        width: 465.9px;
+    }
+
+}
+
+@media only screen and (max-width: 520px) {
+    .VideoEnglish {
+        height: 209.7px;
+        width: 372.7px;
+    }
+
+    .VideoEnglish iframe {
+        height: 209.7px;
+        width: 372.7px;
+    }
+
+}
+
+@media only screen and (max-width: 400px) {
+    .VideoEnglish {
+        height: 167.7px;
+        width: 298.1px;
+    }
+
+    .VideoEnglish iframe {
+        height: 167.7px;
+        width: 298.1px;
+    }
+
+}

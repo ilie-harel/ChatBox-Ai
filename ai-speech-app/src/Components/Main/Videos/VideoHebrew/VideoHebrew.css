@@ -12,3 +12,56 @@
 .iframeTest{
     width: 100%; height: 100%; position: absolute;
 }
+
+
+@media only screen and (max-width: 1000px) {
+    .VideoHebrew {
+        height: 327.6px;
+        width: 582.4px;
+    }
+
+    .VideoHebrew iframe {
+        height: 327.6px;
+        width: 582.4px;
+    }
+
+}
+
+@media only screen and (max-width: 700px) {
+    .VideoHebrew {
+        height: 262.1px;
+        width: 465.9px;
+    }
+
+    .VideoHebrew iframe {
+        height: 262.1px;
+        width: 465.9px;
+    }
+
+}
+
+@media only screen and (max-width: 520px) {
+    .VideoHebrew {
+        height: 209.7px;
+        width: 372.7px;
+    }
+
+    .VideoHebrew iframe {
+        height: 209.7px;
+        width: 372.7px;
+    }
+
+}
+
+@media only screen and (max-width: 400px) {
+    .VideoHebrew {
+        height: 167.7px;
+        width: 298.1px;
+    }
+
+    .VideoHebrew iframe {
+        height: 167.7px;
+        width: 298.1px;
+    }
+
+}

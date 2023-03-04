@@ -16,6 +16,7 @@ function Videos() {
 
             <div>
                 <TypeAnimation
+                className="video_title"
                     sequence={["Speak naturally, We'll do the typing"]}
                     wrapper="h2"
                     cursor={true}
