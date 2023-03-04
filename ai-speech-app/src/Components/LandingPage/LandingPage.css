@@ -3,7 +3,7 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
+  justify-content: space-between;
   align-items: center;
   position: relative;
   box-sizing: border-box;
@@ -11,13 +11,13 @@
 
 .LandingPageHeader {
   display: flex;
-  width: 80%;
+  width: 100%;
   justify-content: space-between;
   align-items: center;
   box-sizing: border-box;
-  height: 100px;
+  height: 80px;
   padding: 0 50px;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
 }
 
 .LandingPageHeader img {
@@ -49,60 +49,9 @@
   cursor: pointer;
 }
 
-
-
-
-.LandingPage {
-  /* background-color: black; */
-  /* position: relative; */
+@media only screen and (max-width: 1000px) {
+  .LandingPageHeader{
+    padding: 0;
+    margin: 0;
+  }
 }
-/* 
-.wave {
-  background: var(--color3);
-  border-radius: 1000% 1000% 0 0;
-  position: fixed;
-  width: 200%;
-  height: 8em;
-  animation: wave 15s -3s linear infinite;
-  transform: translate3d(0, 0, 0);
-  opacity: 0.4;
-  bottom: 0;
-  left: 0;
-  z-index: 1;
-}
-
-.wave:nth-of-type(2) {
-  bottom: -1.25em;
-  background: var(--color3);
-  animation: wave 27s linear reverse infinite;
-  opacity: 0.4;
-}
-
-.wave:nth-of-type(3) {
-  background: var(--color2);
-  bottom: -2.5em;
-  animation: wave 30s -1s reverse infinite;
-  opacity: 1;
-}
-
-@keyframes wave {
-  2% {
-      transform: translateX(1);
-  }
-
-  25% {
-      transform: translateX(-25%);
-  }
-
-  50% {
-      transform: translateX(-50%);
-  }
-
-  75% {
-      transform: translateX(-25%);
-  }
-
-  100% {
-      transform: translateX(1);
-  }
-} */

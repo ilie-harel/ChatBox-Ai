@@ -19,14 +19,14 @@ export default function LandingPage() {
         <div className='landing_page_logo' onClick={(() => {
           navigate("/")
           setPath("/")
-         })}>
-          <img src={logo} alt=""  />
+        })}>
+          <img src={logo} alt="" />
         </div>
-        {path === "/" ? 
-        <Link to={"/videos"} onClick={(() => setPath("/videos"))} >About The Project</Link>
-      :
-        <Link to={"/"} onClick={(() => setPath("/"))}  >Back</Link>
-      } 
+        {path === "/" ?
+          <Link to={"/videos"} onClick={(() => setPath("/videos"))} >About The Project</Link>
+          :
+          <Link to={"/"} onClick={(() => setPath("/"))}  >Back</Link>
+        }
       </div>
 
       <Routes>
@@ -35,16 +35,7 @@ export default function LandingPage() {
         <Route path='/videos' element={<Videos />}></Route>
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
-{/* 
-      <div>
-
-
-      <div class="wave"></div>
-                <div class="wave"></div>
-                <div class="wave"></div>
-      </div> */}
-
-      <BackgroundCover/>
+      <BackgroundCover />
     </div>
   )
 }

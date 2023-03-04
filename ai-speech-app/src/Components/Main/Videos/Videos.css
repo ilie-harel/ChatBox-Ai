@@ -6,7 +6,7 @@
   flex-direction: column;
   gap: 50px;
   z-index: 1;
-  background-color: whitesmoke;
+  /* background-color: whitesmoke; */
   box-sizing: border-box;
   padding: 200px 80px;
   box-shadow: 10px 10px 50px 1px black;
@@ -138,4 +138,9 @@
 
 .nav_to_app_btn:focus {
   box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
+}
+
+@media only screen and (max-width: 1000px) {
+
+  
 }

@@ -9,7 +9,7 @@ export async function generateToken(user: UserModel) {
         'firstName': user.firstName,
         'lastName': user.lastName,
         'email': user.email,
-        'language': user.language
+        'language': user.language,
     }, PRIVATE_KEY)
 }
 

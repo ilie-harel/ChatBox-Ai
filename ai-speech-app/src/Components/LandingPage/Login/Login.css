@@ -1,7 +1,7 @@
 .Login_Container {
     font-family: Arial, Helvetica, sans-serif;
     z-index: 2;
-    box-shadow: 10px 10px 50px 1px black;
+    box-shadow: 10px 10px 50px 1px rgba(0, 0, 0, 0.132);
     border-radius: 40px 40px 40px 40px;
 
 }
@@ -35,31 +35,30 @@
 
 }
 
-.googleLoginDiv{
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
+.googleLoginDiv {
     box-sizing: border-box;
     padding: 10px;
     display: flex;
     justify-content: center;
-    align-items: center;
     flex-direction: column;
+    gap: 10px;
+    align-items: center;
     margin-top: 20px;
     width: 100%;
-    /* height: 40px; */
+    justify-content: space-evenly;
 }
 
-.googleLoginDiv .S9gUrf-YoZ4jf{
+.googleLoginDivSmallScreen {
+    box-sizing: border-box;
+    padding: 10px;
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
+    gap: 10px;
+    flex-direction: column;
     align-items: center;
-}
-.googleLoginDiv .haAclf{
+    margin-top: 20px;
     width: 100%;
-}
-
-.googleLoginDiv .nsm7Bb-HzV7m-LgbsSe .jVeSEe .i5vt6e-Ia7Qfc .uaxL4e-RbRzK{
-    width: 100% !important;
+    justify-content: space-evenly;
 }
 
 .Login_ContainerLogo img {
@@ -161,16 +160,41 @@
     flex-direction: column;
     gap: 30px;
 }
+
 @media only screen and (max-width: 1000px) {
     .Login_Container .Login .vacation_image_login {
         display: none;
     }
-
+    
     .Login_Container .Login>div {
         width: 100%;
         height: 100%;
         box-sizing: border-box;
         padding: 10px;
         text-align: center;
+        border-radius: 40px;
+    }
+
+    .form_container>* {
+        font-size: 14px;
+    }
+
+    .Login_Container .Login>div form input {
+        margin: 3px;
+    }
+
+    /* .Login_Container .Login{
+        width: max-content;
+        height: max-content;
+    } */
+
+    .Login_Container .Login>div form input{
+        padding: 10px;
+    }
+    .Login_Container .Login>div form .link_to_register_in_login_form{
+        margin-top: 20px;
+    }
+    .form_container h3{
+        margin-bottom: 20px;
     }
 }

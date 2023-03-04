@@ -10,6 +10,8 @@ import { toastsFunctions } from '../../../helpers/toastsFunctions';
 
 
 const GoogleRegister = () => {
+    const smallScreen = window.matchMedia("(max-width: 1000px)").matches;
+
     const dispatch = useDispatch();
     const Navigate = useNavigate()
 
@@ -28,9 +30,9 @@ const GoogleRegister = () => {
     }
 
     return (
-        <div className='GoogleRegister'>
-
             <GoogleLogin
+                shape={'rectangular'}
+                width={smallScreen? 50: 300}
                 onSuccess={credentialResponse => {
                     const details = jwtDecode(credentialResponse.credential);
                     const googleUser = {
@@ -46,7 +48,6 @@ const GoogleRegister = () => {
                     toastsFunctions.toastError('Register Failed');
                 }}
             />
-        </div>
     );
 };
 

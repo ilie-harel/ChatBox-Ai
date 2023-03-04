@@ -32,6 +32,7 @@ export default function Register() {
   const dispatch = useDispatch();
   const Navigate = useNavigate();
   const [newLanguage, setNewLanguage] = useState();
+  const smallScreen = window.matchMedia("(max-width: 1000px)").matches;
 
   const languages = [
     { label: "Hebrew", value: "he", img: israelFlag },
@@ -105,7 +106,7 @@ export default function Register() {
             {errors.password?<div style={{display: "none"}}> {toastsFunctions.toastError('password min length 4') }</div> : <></>}
             <Autocomplete
               id="country-select-demo"
-              sx={{ width: 300 }}
+              sx={{ width:smallScreen? 200: 300 }}
               options={languages}
               autoHighlight
               getOptionLabel={(option) => option.label}

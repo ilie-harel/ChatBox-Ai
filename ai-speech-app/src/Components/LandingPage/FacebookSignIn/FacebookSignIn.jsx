@@ -9,6 +9,7 @@ import { apiService } from '../../../Service/ApiService';
 export default function FacebookSignIn() {
     const dispatch = useDispatch()
     const Navigate = useNavigate()
+    const smallScreen = window.matchMedia("(max-width: 1000px)").matches;
 
     async function userRegister(user) {
         try {
@@ -26,7 +27,7 @@ export default function FacebookSignIn() {
 
     async function onSuccessFunction(response) {
         console.log('Login Success!', response);
-        const fields = 'id,name,email,picture';
+        const fields = 'id,name,email';
         fetch(`https://graph.facebook.com/me?fields=${fields}&access_token=${response.accessToken}`)
             .then(response => response.json())
             .then(data => {
@@ -62,7 +63,12 @@ export default function FacebookSignIn() {
                 fontSize: '14px',
                 border: 'none',
                 borderRadius: '4px',
-                width: "200px"
+                width: smallScreen? '190px': '300px',
+                margin: 0,
+                height: '40px',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
             }}
             onSuccess={onSuccessFunction}
             onFail={(error) => {
