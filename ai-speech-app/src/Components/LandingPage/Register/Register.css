@@ -3,7 +3,7 @@
     z-index: 2;
     box-shadow: 10px 10px 50px 1px rgba(0, 0, 0, 0.132);
     border-radius: 40px 40px 40px 40px;
-    /* position: relative; */
+    position: relative;
 }
 
 
@@ -98,8 +98,8 @@
 
 .Register_Container .Register>div form .terms_register_form {
     /* margin-top: 60px; */
-    /* position: absolute; */
-    /* bottom: 0; */
+    position: absolute;
+    bottom: 0;
     color: gray;
     font-size: 12px;
 }
@@ -175,5 +175,13 @@
 
     .Register_Container .Register>div form .inp_register {
         padding: 10px;
+    }
+    .Register_Container .Register>div form .terms_register_form {
+        /* margin-top: 60px; */
+        /* position: absolute; */
+        /* bottom: 0; */
+        position: relative;
+        /* color: gray;
+        font-size: 12px; */
     }
 }
