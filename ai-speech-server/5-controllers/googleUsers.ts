@@ -8,11 +8,10 @@ GoogleUsersRoute.post('/google/auth', async (req, res) => {
     const user = req.body;
     try {
         const results = await googleRegister(user)
-        console.log(results);
-
         if (results[0] === false) {
             user.id = results[1]
             user.language = results[2]
+            user.voiceGender = results[3]
             const token = await generateToken(user)
             res.status(200).json(token);
             return;

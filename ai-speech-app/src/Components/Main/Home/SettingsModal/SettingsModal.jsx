@@ -31,7 +31,7 @@ const languages = [
   { label: "Espaniol", value: "es", img: spainFlag },
   { label: "Italian", value: "it", img: italyFlag },
   { label: "Português", value: "pt", img: brazilFlag },
-  { label: "普通话", value: "zh", img: chinaFlag },
+  { label: "普通话", value: "cmn", img: chinaFlag },
   { label: "Dutch", value: "nl", img: netherlandsFlag },
 ];
 
@@ -42,6 +42,7 @@ export default function SettingsModal(props) {
   const handleClose = () => setOpen(false);
   const authSlice = useSelector((state) => state.auth);
   const [newLanguage, setNewLanguage] = useState(authSlice.language);
+  const [gender, setGender] = useState(authSlice.voiceGender);
   const smallScreen = window.matchMedia("(max-width: 1000px)").matches;
 
   const style = {
@@ -56,11 +57,12 @@ export default function SettingsModal(props) {
     p: 4,
   };
   async function Save() {
-    if (newLanguage === "") return;
+    if (newLanguage === "" && gender === "") return console.log(newLanguage, gender);;
+
     try {
-      if (!newLanguage) return;
-      if (newLanguage !== authSlice.language) {
-        const results = await apiService.changeUserLanguage(newLanguage);
+      // if (!newLanguage) return;
+      if (newLanguage !== authSlice.language || gender !== authSlice.voiceGender) {
+        const results = await apiService.changeUserLanguage(newLanguage, gender);
         dispatch(loginRedux(results));
         dispatch(changeRoomId(0));
         dispatch(changeRoomName(""));
@@ -80,7 +82,6 @@ export default function SettingsModal(props) {
       {
         props.show ? <></> :
           <div onClick={handleOpen} className="SettinsBtnDiv">
-
             <SettingsIcon style={{ color: "white" }} />
           </div>
       }
@@ -134,15 +135,20 @@ export default function SettingsModal(props) {
                   />
                 )}
               />
+              <select defaultValue={gender} onChange={(e) => setGender(e.target.value)}>
+                <option value="">Choose a gender</option>
+                <option value="MALE">Male</option>
+                <option value="FEMALE">Female</option>
+              </select>
             </div>
             <div className="SettingsModalBtns">
               <button className="cancel_settings" onClick={() => handleClose()}>
                 Cancel
               </button>
               <button
-                disabled={authSlice.language === newLanguage}
+                disabled={authSlice.language === newLanguage && authSlice.voiceGender === gender}
                 className={
-                  authSlice.language === newLanguage
+                  authSlice.language === newLanguage && authSlice.voiceGender === gender
                     ? `disable_save`
                     : "save_settings"
                 }

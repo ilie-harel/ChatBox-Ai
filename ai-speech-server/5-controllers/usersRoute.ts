@@ -44,18 +44,20 @@ UserRoute.post('/users/login', async (req, res) => {
 
 UserRoute.put('/users/language', async (req, res) => {
     const lan = req.query.lan;
+    const gender = req.query.gender
     try {
         const token = req.headers.authorization;
         const { sub, firstName, lastName, email } = await getDetailsFromToken(token);
-        await changeUserLanguage(sub, String(lan));
+        await changeUserLanguage(sub, String(lan), String(gender));
         const updatedUser: any = {
             id: sub,
             firstName: firstName,
             lastName: lastName,
             email: email,
-            language: lan
+            language: lan,
+            voiceGender: gender
         }
-        const newToken = await generateToken(updatedUser)
+        const newToken = await generateToken(updatedUser)        
         res.status(200).json(newToken);
     } catch (e) {
         res.status(401).json(e)

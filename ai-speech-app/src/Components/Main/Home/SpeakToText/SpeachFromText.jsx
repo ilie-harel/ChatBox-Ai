@@ -36,6 +36,7 @@ function SpeechFromText() {
         if (transcript && !listening) {
             stopListening();
         }
+
     }, [finalTranscript, listening]);
 
     useEffect(() => {

@@ -22,8 +22,8 @@ export async function register(user: UserModel) {
     return results;
 }
 
-export async function changeUserLanguage(id:number,language:string){
-    const query = 'UPDATE users SET language = ? WHERE id = ?';
-    const results = await execute<OkPacket>(query,[language,id]);
+export async function changeUserLanguage(id: number, language: string, gender: string) {
+    const query = 'UPDATE users SET language = ?, voiceGender = ? WHERE id = ?';
+    const results = await execute<OkPacket>(query, [language, gender, id]);
     return results
 }

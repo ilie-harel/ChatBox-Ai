@@ -5,8 +5,8 @@ const token = window.localStorage.getItem('ChatBoxToken');
 let initialState = null;
 
 if (token) {
-    const { firstName, lastName, sub, language } = jwtDecode(token);
-    initialState = { firstName, lastName, sub, language };
+    const { firstName, lastName, sub, language, voiceGender } = jwtDecode(token);
+    initialState = { firstName, lastName, sub, language, voiceGender };
 }
 
 const authSlice = createSlice({
@@ -15,8 +15,8 @@ const authSlice = createSlice({
     reducers: {
         loginRedux: (state, action) => {
             window.localStorage.setItem('ChatBoxToken', action.payload);
-            const { firstName, lastName, sub, language } = jwtDecode(action.payload);
-            state = { firstName, lastName, sub, language };
+            const { firstName, lastName, sub, language, voiceGender } = jwtDecode(action.payload);
+            state = { firstName, lastName, sub, language, voiceGender };
             return state;
         },
 

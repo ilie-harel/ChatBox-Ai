@@ -7,6 +7,7 @@ export interface UserModel {
     email: string,
     password: string,
     language: string,
+    voiceGender:string
 }
 
 export interface GoogleUserModel {

@@ -19,9 +19,9 @@ class ApiService {
         return results;
     }
 
-    async changeUserLanguage(language) {
+    async changeUserLanguage(language, gender) {
         const token = getToken()
-        const results = fetch(`http://localhost:3046/users/language?lan=${language}`, {
+        const results = fetch(`http://localhost:3046/users/language?lan=${language}&gender=${gender}`, {
             method: 'PUT',
             mode: 'cors',
             headers: {

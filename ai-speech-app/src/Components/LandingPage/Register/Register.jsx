@@ -41,7 +41,7 @@ export default function Register() {
     { label: "Espaniol", value: "es", img: spainFlag },
     { label: "Italian", value: "it", img: italyFlag },
     { label: "Português", value: "pt", img: brazilFlag },
-    { label: "普通话", value: "zh", img: chinaFlag },
+    { label: "普通话", value: "cmn", img: chinaFlag },
     { label: "Dutch", value: "nl", img: netherlandsFlag },
   ];
 
@@ -103,10 +103,10 @@ export default function Register() {
               type="password"
               {...register("password", { required: true, minLength: 4 })}
             />
-            {errors.password?<div style={{display: "none"}}> {toastsFunctions.toastError('password min length 4') }</div> : <></>}
+            {errors.password ? <div style={{ display: "none" }}> {toastsFunctions.toastError('password min length 4')}</div> : <></>}
             <Autocomplete
               id="country-select-demo"
-              sx={{ width:'85%' ,marginTop:'10px'}}
+              sx={{ width: '85%', marginTop: '10px' }}
               options={languages}
               autoHighlight
               getOptionLabel={(option) => option.label}
@@ -136,7 +136,7 @@ export default function Register() {
                   label="Choose a language"
                   inputProps={{
                     ...params.inputProps,
-                    autoComplete: "new-password", 
+                    autoComplete: "new-password",
                   }}
                 />
               )}

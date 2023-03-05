@@ -10,6 +10,7 @@ export async function generateToken(user: UserModel) {
         'lastName': user.lastName,
         'email': user.email,
         'language': user.language,
+        'voiceGender': user.voiceGender
     }, PRIVATE_KEY)
 }
 
@@ -17,8 +18,8 @@ export async function generateToken(user: UserModel) {
 export async function getDetailsFromToken(token: any) {
     try {
         const verifyToken = jwt.verify(token.substring(7), PRIVATE_KEY);
-        const { sub, language, firstName, lastName, email } = verifyToken
-        return { sub, language, firstName, lastName, email }
+        const { sub, language, firstName, lastName, email, voiceGender } = verifyToken
+        return { sub, language, firstName, lastName, email, voiceGender }
     } catch (e) {
         return e
     }
