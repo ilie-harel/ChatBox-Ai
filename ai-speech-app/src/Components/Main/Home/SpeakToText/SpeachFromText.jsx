@@ -108,6 +108,11 @@ function SpeechFromText() {
         console.log(audioSource);
     }
 
+    function onSentanceClick(e){
+        stopAudio();
+        speakTextGoogle(e.target.innerText, setAudioSource)
+    }
+
     return (
         <div className={authSlice.language === 'he' ? "SpeachFromText directionHe" : "SpeachFromText directionEn"}>
             <div className="chatDiv">
@@ -143,7 +148,7 @@ function SpeechFromText() {
                                                             speed={50}
                                                         />
                                                         :
-                                                        <p onClick={(e) => speakTextGoogle(e.target.innerText, setAudioSource)}>{m.message}</p>
+                                                        <p onClick={(e) => onSentanceClick(e)}>{m.message}</p>
                                                     }
                                                     <div ref={bottomRef} />
                                                 </div>
@@ -158,7 +163,7 @@ function SpeechFromText() {
                                                             speed={50}
                                                         />
                                                         :
-                                                        <p onClick={(e) => speakTextGoogle(e.target.innerText, setAudioSource)}>{m.message}</p>
+                                                        <p onClick={(e) => onSentanceClick(e)}>{m.message}</p>
                                                     }
                                                 </div>
                                             }

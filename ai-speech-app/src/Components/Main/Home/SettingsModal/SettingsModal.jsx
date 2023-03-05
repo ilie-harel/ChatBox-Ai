@@ -1,6 +1,5 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { apiService } from "../../../../Service/ApiService";
@@ -24,6 +23,16 @@ import chinaFlag from "../../../../assests/flags/china.png";
 
 
 
+// import * as React from 'react';
+import Avatar from '@mui/joy/Avatar';
+import FormLabel from '@mui/joy/FormLabel';
+import Radio, { radioClasses } from '@mui/joy/Radio';
+import RadioGroup from '@mui/joy/RadioGroup';
+import Sheet from '@mui/joy/Sheet';
+import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
+
+
+
 const languages = [
   { label: "Hebrew", value: "he", img: israelFlag },
   { label: "English", value: "en", img: USAFlag },
@@ -37,7 +46,7 @@ const languages = [
 
 export default function SettingsModal(props) {
   const dispatch = useDispatch();
-  const [open, setOpen] = useState(props.show);
+  const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const authSlice = useSelector((state) => state.auth);
@@ -76,6 +85,12 @@ export default function SettingsModal(props) {
       console.log(e);
     }
   }
+
+
+  React.useEffect(() => {
+    console.log(gender);
+  }, [gender])
+
 
   return (
     <div className="SettingsModal">
@@ -135,12 +150,97 @@ export default function SettingsModal(props) {
                   />
                 )}
               />
-              <select defaultValue={gender} onChange={(e) => setGender(e.target.value)}>
+              {/* <select defaultValue={gender} onChange={(e) => setGender(e.target.value)}>
                 <option value="">Choose a gender</option>
                 <option value="MALE">Male</option>
                 <option value="FEMALE">Female</option>
-              </select>
+              </select> */}
             </div>
+
+
+
+
+            <RadioGroup
+            className="radio_gender"
+      aria-label="platform"
+      defaultValue="Website"
+      overlay
+      name="platform"
+      sx={{
+        flexDirection: 'row',
+        gap: 2,
+        [`& .${radioClasses.checked}`]: {
+          [`& .${radioClasses.action}`]: {
+            inset: -1,
+            border: '3px solid',
+            borderColor: 'primary.500',
+          },
+        },
+        [`& .${radioClasses.radio}`]: {
+          display: 'contents',
+          '& > svg': {
+            zIndex: 2,
+            position: 'absolute',
+            top: '-8px',
+            right: '-8px',
+            bgcolor: 'background.body',
+            borderRadius: '50%',
+          },
+        },
+      }}
+    >
+        <Sheet
+          key="MALE"
+          
+          variant="outlined"
+          sx={{
+            borderRadius: 'md',
+            bgcolor: 'background.body',
+            boxShadow: 'sm',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center', 
+            gap: 0.5,
+            p: 2,
+            minWidth: 40,
+            width: 40,
+            minHeight: 40,
+            height: 40,
+          }}
+        >
+          <Radio checked={gender === "MALE"} onClick={(e) => setGender(e.target.value)} id="MALE" value="MALE" checkedIcon={<CheckCircleRoundedIcon />} />
+          <Avatar variant="soft" size="sm" />
+          <FormLabel htmlFor="MALE">MALE</FormLabel>
+        </Sheet>
+        <Sheet
+          key="FEMALE"
+          variant="outlined"
+          sx={{
+            borderRadius: 'md',
+            bgcolor: 'background.body',
+            boxShadow: 'sm',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center', 
+            gap: 0.5,
+            p: 2,
+            minWidth: 40,
+            width: 40,
+            minHeight: 40,
+            height: 40,
+          }}
+        >
+          <Radio checked={gender === "FEMALE"} onClick={(e) => setGender(e.target.value)} id="FEMALE" value="FEMALE" checkedIcon={<CheckCircleRoundedIcon />} />
+          <Avatar variant="soft" size="sm" />
+          <FormLabel htmlFor={"FEMALE"}>FEMALE</FormLabel>
+        </Sheet>
+    </RadioGroup>
+
+
+
+
             <div className="SettingsModalBtns">
               <button className="cancel_settings" onClick={() => handleClose()}>
                 Cancel
@@ -158,10 +258,14 @@ export default function SettingsModal(props) {
               </button>
             </div>
           </div>
+    
         </Box>
+
       </Modal>
+
     </div>
   );
 }
+
 
 

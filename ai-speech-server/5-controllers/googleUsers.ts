@@ -17,6 +17,7 @@ GoogleUsersRoute.post('/google/auth', async (req, res) => {
             return;
         }
         user.id = results
+        user.voiceGender = "MALE";
         const token = await generateToken(user)
         res.status(200).json(token)
 

@@ -17,6 +17,7 @@ UserRoute.post('/users/register', async (req, res) => {
             res.status(404).json(results);
             return;
         }
+        user.voiceGender = "MALE";
         const token = await generateToken(user)
         res.status(200).json(token)
 

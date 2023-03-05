@@ -100,3 +100,15 @@
         max-width: 320px;
     }
 }
+
+
+.radio_gender {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.radio_gender div span span span {
+    border-color: var(--color3) !important;
+}
