@@ -59,6 +59,7 @@ function SpeechFromText() {
                 }, 1);
             });
         }
+        stopAudio()
     }, [roomSlice.id])
 
     async function startListening() {

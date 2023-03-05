@@ -1,7 +1,7 @@
 const { store } = require("../app/store");
 const { apiService } = require("../Service/ApiService");
 
-async function speakTextGoogle(sen, setAudioSource) {
+export default async function speakTextGoogle(sen, setAudioSource) {
     const language = store.getState().auth.language;
     const voiceGender = store.getState().auth.voiceGender;
     const voices = await apiService.googleVoices();
@@ -54,4 +54,4 @@ async function speakTextGoogle(sen, setAudioSource) {
     }
 }
 
-module.exports = speakTextGoogle;
+// module.exports = speakTextGoogle;
