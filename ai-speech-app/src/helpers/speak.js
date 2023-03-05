@@ -1,4 +1,5 @@
 const { store } = require("../app/store");
+const { apiService } = require("../Service/ApiService");
 const { toastsFunctions } = require("./toastsFunctions");
 
 function speakText(sen) {

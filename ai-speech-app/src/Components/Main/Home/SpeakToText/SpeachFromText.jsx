@@ -14,6 +14,7 @@ import WelcomeComponent from "./WelcomeComponent/WelcomeComponent";
 import LinearProgress from '@mui/material/LinearProgress';
 import { toastsFunctions } from "../../../../helpers/toastsFunctions";
 import './SpeachFromText.css'
+import speakTextGoogle from "../../../../helpers/speakGoogle";
 
 function SpeechFromText() {
     const { transcript, listening, resetTranscript, finalTranscript, browserSupportsSpeechRecognition } = useSpeechRecognition();
@@ -25,23 +26,19 @@ function SpeechFromText() {
     const bottomRef = useRef(null);
     const chatBoxRef = useRef(null);
     const [isChangedRoom, setIsChangedRoom] = useState(false);
+    const [audioSource, setAudioSource] = useState(null);
     const dispatch = useDispatch();
 
     useEffect(() => {
         if (!browserSupportsSpeechRecognition) {
             return <span>Your Browser doesnt support speech to text</span>
         }
-
-
-
         if (transcript && !listening) {
             stopListening();
         }
-
     }, [finalTranscript, listening]);
 
     useEffect(() => {
-        
         chatBoxRef.current.scroll({
             top: chatBoxRef.current.scrollHeight,
             behavior: 'smooth'
@@ -61,11 +58,7 @@ function SpeechFromText() {
                 }, 1);
             });
         }
-
-        console.log(roomSlice.id);
     }, [roomSlice.id])
-
-
 
     async function startListening() {
         if (roomSlice.id === 0) {
@@ -75,11 +68,8 @@ function SpeechFromText() {
         await SpeechRecognition.startListening({ language: authSlice.language });
     }
 
-
     async function stopListening() {
         setIsChangedRoom(false)
-
-        
         setLoading(false)
         setMessages(messages => [...messages, { role: 1, message: finalTranscript }])
         SpeechRecognition.stopListening()
@@ -89,7 +79,7 @@ function SpeechFromText() {
                 toastsFunctions.toastError('Error occured')
             } else {
                 const reply = await res.json();
-                speakText(reply)
+                speakTextGoogle(reply, setAudioSource)
                 resetTranscript();
                 try {
                     const mes = await apiService.getMessagesByUserIdAndRoomId(roomSlice.id);
@@ -97,19 +87,24 @@ function SpeechFromText() {
                     setMessages(messages => [...messages, mes[mes.length - 1]])
                     apiService.updateRoomName(mes[0].message, roomSlice.id);
                     dispatch(changeRoomName(mes[0].message));
-                    
+
                     setLoading(false)
                 } catch (e) {
                     alert(e)
                 }
             }
-
         } else {
-        setIsChangedRoom(false)
+            setIsChangedRoom(false)
             console.log('No roomId');
         }
     }
 
+    function stopAudio() {
+        if (audioSource !== null) {
+            audioSource.stop();
+        }
+        console.log(audioSource);
+    }
 
     return (
         <div className={authSlice.language === 'he' ? "SpeachFromText directionHe" : "SpeachFromText directionEn"}>
@@ -120,7 +115,7 @@ function SpeechFromText() {
                             <WelcomeComponent />
                         </div>
                         :
-                        loadingData?
+                        loadingData ?
                             <div className="loadingDivData">
                                 <LinearProgress color="inherit" style={{ width: '60%' }} />
                             </div>
@@ -146,14 +141,14 @@ function SpeechFromText() {
                                                             speed={50}
                                                         />
                                                         :
-                                                        <p onClick={(e) => speakText(e.target.innerText)}>{m.message}</p>
+                                                        <p onClick={(e) => speakTextGoogle(e.target.innerText, setAudioSource)}>{m.message}</p>
                                                     }
                                                     <div ref={bottomRef} />
                                                 </div>
                                                 :
                                                 <div key={m.id} className={className}>
                                                     <DataObjectIcon fontSize="large" />
-                                                    {isLast  && !isChangedRoom ?
+                                                    {isLast && !isChangedRoom ?
                                                         <TypeAnimation
                                                             sequence={[m.message]}
                                                             wrapper="p"
@@ -161,15 +156,13 @@ function SpeechFromText() {
                                                             speed={50}
                                                         />
                                                         :
-                                                        <p onClick={(e) => speakText(e.target.innerText)}>{m.message}</p>
+                                                        <p onClick={(e) => speakTextGoogle(e.target.innerText, setAudioSource)}>{m.message}</p>
                                                     }
                                                 </div>
                                             }
-
                                         </div>
                                     );
                                 })}
-
                     {
                         loading ?
                             <div className="loadingDiv">
@@ -180,9 +173,6 @@ function SpeechFromText() {
                             <></>
                     }
                 </div>
-
-
-
                 <div className="SpeachFromTextButtons">
                     <div className="Start_Record" onClick={() => startListening()}>
                         {listening ?
@@ -191,8 +181,7 @@ function SpeechFromText() {
                             <MicIcon fontSize="large" sx={{ color: "white" }} />
                         }
                     </div>
-
-                    <div className="cancel_record" onClick={() => window.speechSynthesis.cancel()}><CancelIcon fontSize="large" /></div>
+                    <div className="cancel_record" onClick={() => stopAudio()}><CancelIcon fontSize="large" /></div>
                 </div>
             </div>
         </div >

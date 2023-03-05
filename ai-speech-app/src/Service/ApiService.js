@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { GOOGLE_KEY } from './config';
 
 function getToken() {
     const token = localStorage.getItem('ChatBoxToken');
@@ -149,6 +150,30 @@ class ApiService {
         // const data = await results.json()
         // return data[0]
     }
+
+
+
+    // voices
+
+    async googleVoices() {
+        const voices = await fetch(`https://texttospeech.googleapis.com/v1/voices?key=${GOOGLE_KEY}`, {
+        })
+        const data = voices.json();
+        return data;
+
+    }
+
+    async getEncodedAudioGoogle(request) {
+        const response = await fetch(`https://texttospeech.googleapis.com/v1/text:synthesize?key=${GOOGLE_KEY}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(request)
+        });
+        return await response.json()
+    }
+
 }
 
 export const apiService = new ApiService()
