@@ -16,6 +16,8 @@ export async function getMessageFromChatGPTandSave(message: string, id: number, 
             messages.push({ role: 'user', content: msg.message });
         }
     }
+    console.log(history);
+    
 
     try {
         const completion: any = openai.createChatCompletion({

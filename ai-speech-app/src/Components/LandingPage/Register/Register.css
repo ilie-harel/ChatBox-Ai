@@ -116,7 +116,7 @@
     object-fit: cover;
 }
 
-#country-select-demo{
+#country-select-demo {
     height: 18px;
     display: flex;
     justify-content: center;
@@ -133,17 +133,12 @@
         height: 100%;
         box-sizing: border-box;
         padding: 10px;
-        border-radius: 40px;
         text-align: center;
     }
 
     .Login_ContainerLogo img {
         width: 250px;
     }
-
-    /* .Register_Container .Register>div form .inp_register {
-        margin: 3px;
-    } */
 
     .Register_Container .Register>div form .inp_register::placeholder {
         font-size: 12px;
@@ -156,10 +151,10 @@
 
 @media only screen and (max-width: 500px) {
     .Register_Container .Register {
-        /* width: max-content; */
         height: max-content;
 
     }
+
     .Register_Container .Register>div form .inp_register::placeholder {
         font-size: 10px;
     }
@@ -169,19 +164,11 @@
         margin-bottom: 20px;
     }
 
-    /* .Register_Container .Register>div form input {
-        height: 10px;
-    } */
-
     .Register_Container .Register>div form .inp_register {
         padding: 10px;
     }
+
     .Register_Container .Register>div form .terms_register_form {
-        /* margin-top: 60px; */
-        /* position: absolute; */
-        /* bottom: 0; */
         position: relative;
-        /* color: gray;
-        font-size: 12px; */
     }
 }

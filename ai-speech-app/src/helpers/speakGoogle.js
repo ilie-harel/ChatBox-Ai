@@ -5,11 +5,19 @@ export default async function speakTextGoogle(sen, setAudioSource) {
     const language = store.getState().auth.language;
     const voiceGender = store.getState().auth.voiceGender;
     const voices = await apiService.googleVoices();
-    const voice = voices.voices.find((voice) =>
-        voice.languageCodes[0].includes(language) && voice.ssmlGender === voiceGender
-    );
 
+    let voice;
+    if (language === 'en' && voiceGender === "MALE") {
+        voice = voices.voices.find((voice) =>
+            voice.languageCodes[0].includes(language) && voice.ssmlGender === voiceGender && voice.name === 'en-US-Neural2-A'
+        )
+    } else {
+        voice = voices.voices.find((voice) =>
+            voice.languageCodes[0].includes(language) && voice.ssmlGender === voiceGender && voice.name.includes('Standard')
+        );
+    }
     if (voice) {
+        console.log(voice);
         const ssml = `<speak><prosody rate="1.2">${sen}</prosody></speak>`;
 
         const audioConfig = {
