@@ -1,7 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
 import { apiService } from "../../../../Service/ApiService";
-import speakText from '../../../../helpers/speak'
 import MicIcon from '@mui/icons-material/Mic';
 import EqGif from "./EqAnimation.gif";
 import CancelIcon from '@mui/icons-material/Cancel';
@@ -13,8 +12,8 @@ import { changeRoomId, changeRoomName } from "../../../../app/roomSlice";
 import WelcomeComponent from "./WelcomeComponent/WelcomeComponent";
 import LinearProgress from '@mui/material/LinearProgress';
 import { toastsFunctions } from "../../../../helpers/toastsFunctions";
-import './SpeachFromText.css'
 import speakTextGoogle from "../../../../helpers/speakGoogle";
+import './SpeachFromText.css';
 
 function SpeechFromText() {
     const { transcript, listening, resetTranscript, finalTranscript, browserSupportsSpeechRecognition } = useSpeechRecognition();
@@ -89,7 +88,6 @@ function SpeechFromText() {
                     setMessages(messages => [...messages, mes[mes.length - 1]])
                     apiService.updateRoomName(mes[0].message, roomSlice.id);
                     dispatch(changeRoomName(mes[0].message));
-
                     setLoading(false)
                 } catch (e) {
                     alert(e)
@@ -108,13 +106,13 @@ function SpeechFromText() {
         console.log(audioSource);
     }
 
-    function onSentanceClick(e){
+    function onSentanceClick(e) {
         stopAudio();
         speakTextGoogle(e.target.innerText, setAudioSource)
     }
 
     return (
-        <div className={authSlice.language === 'he' ? "SpeachFromText directionHe" : "SpeachFromText directionEn"}>
+        <div className={authSlice.language === 'he' || authSlice.language === 'ar' ? "SpeachFromText directionRtl" : "SpeachFromText directionLtr"}>
             <div className="chatDiv">
                 <div ref={chatBoxRef} className="chat">
                     {roomSlice.id == 0 ?

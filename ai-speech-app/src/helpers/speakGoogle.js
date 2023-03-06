@@ -7,24 +7,21 @@ export default async function speakTextGoogle(sen, setAudioSource) {
     const voices = await apiService.googleVoices();
 
     let voice;
-    if (language === 'en' && voiceGender === "MALE") {
-        voice = voices.voices.find((voice) =>
-            voice.languageCodes[0].includes(language) && voice.ssmlGender === voiceGender && voice.name === 'en-US-Neural2-A'
-        )
-    } else {
-        voice = voices.voices.find((voice) =>
-            voice.languageCodes[0].includes(language) && voice.ssmlGender === voiceGender && voice.name.includes('Standard')
-        );
-    }
-    if (voice) {
-        console.log(voice);
-        const ssml = `<speak><prosody rate="1.2">${sen}</prosody></speak>`;
 
+    if (language === 'en' && voiceGender === "MALE") {
+        voice = voices.voices.find((voice) => voice.languageCodes[0].includes(language) && voice.ssmlGender === voiceGender && voice.name === 'en-US-Neural2-A')
+    } else {
+        voice = voices.voices.find((voice) => voice.languageCodes[0].includes(language) && voice.ssmlGender === voiceGender && voice.name.includes('Standard'));
+    }
+
+    if (voice) {
+        const ssml = `<speak><prosody rate="1.2">${sen}</prosody></speak>`;
         const audioConfig = {
             audioEncoding: "OGG_OPUS",
             sampleRateHertz: 20000,
             effectsProfileId: ["handset-class-device"],
         };
+
         const request = {
             input: {
                 ssml: ssml,
@@ -39,7 +36,6 @@ export default async function speakTextGoogle(sen, setAudioSource) {
         try {
             const response = await apiService.getEncodedAudioGoogle(request);
             const audioContent = response.audioContent;
-
             const audioData = atob(audioContent);
             const buffer = new ArrayBuffer(audioData.length);
             const view = new Uint8Array(buffer);
@@ -61,5 +57,3 @@ export default async function speakTextGoogle(sen, setAudioSource) {
         }
     }
 }
-
-// module.exports = speakTextGoogle;

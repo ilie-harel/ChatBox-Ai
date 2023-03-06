@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { GOOGLE_KEY } from './config';
+export const BASE_URL ='http://localhost:3046';
 
 function getToken() {
     const token = localStorage.getItem('ChatBoxToken');
@@ -9,19 +10,19 @@ class ApiService {
     // users
 
     async login(user) {
-        const results = await axios.post('http://localhost:3046/users/login', user);
+        const results = await axios.post(`${BASE_URL}/users/login`, user);
         return results;
     }
 
 
     async register(user) {
-        const results = await axios.post('http://localhost:3046/users/register', user);
+        const results = await axios.post(`${BASE_URL}/users/register`, user);
         return results;
     }
 
     async changeUserLanguage(language, gender) {
         const token = getToken()
-        const results = fetch(`http://localhost:3046/users/language?lan=${language}&gender=${gender}`, {
+        const results = fetch(`${BASE_URL}/users/language?lan=${language}&gender=${gender}`, {
             method: 'PUT',
             mode: 'cors',
             headers: {
@@ -34,16 +35,12 @@ class ApiService {
         return data;
     }
 
-
     // google users
 
     async googleAuth(user) {
-        const results = await axios.post('http://localhost:3046/google/auth', user);
+        const results = await axios.post(`${BASE_URL}/google/auth`, user);
         return results;
     }
-
-
-
 
     // messages
 
@@ -52,7 +49,7 @@ class ApiService {
 
         console.log(message);
         const token = getToken()
-        const results = fetch(`http://localhost:3046/message`, {
+        const results = fetch(`${BASE_URL}/message`, {
             method: 'POST',
             body: JSON.stringify(message),
             mode: 'cors',
@@ -67,7 +64,7 @@ class ApiService {
 
     async getMessagesByUserIdAndRoomId(roomId) {
         const token = getToken()
-        const results = fetch(`http://localhost:3046/message/room/${roomId}`, {
+        const results = fetch(`${BASE_URL}/message/room/${roomId}`, {
             method: 'GET',
             mode: 'cors',
             headers: {
@@ -79,25 +76,11 @@ class ApiService {
         return await (await results).json();
     }
 
-    // voices
-
-    async getVoicesFromGoogle() {
-        const results = await fetch('https://texttospeech.googleapis.com/v1/voices?key=', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
-        const { voices } = await results.json()
-        return voices;
-    }
-
-
     // rooms
 
     async getRoomsByUserId() {
         const token = getToken()
-        const results = await fetch('http://localhost:3046/rooms', {
+        const results = await fetch(`${BASE_URL}/rooms`, {
             method: 'GET',
             mode: 'cors',
             headers: {
@@ -112,7 +95,7 @@ class ApiService {
 
     async addRoom() {
         const token = getToken()
-        const results = await fetch('http://localhost:3046/rooms/add', {
+        const results = await fetch(`${BASE_URL}/rooms/add`, {
             method: 'POST',
             mode: 'cors',
             headers: {
@@ -127,7 +110,7 @@ class ApiService {
 
     async updateRoomName(name, roomId) {
         const token = getToken()
-        const results = axios.post(`http://localhost:3046/rooms/edit/${roomId}?name=${name}`, {
+        const results = axios.post(`${BASE_URL}/rooms/edit/${roomId}?name=${name}`, {
             headers: {
                 'authorization': `Bearer ${token}`,
             }
@@ -137,7 +120,7 @@ class ApiService {
 
     async deleteRoom(roomId) {
         const token = getToken()
-        const results = await fetch(`http://localhost:3046/rooms/delete/${roomId}`, {
+        const results = await fetch(`${BASE_URL}/rooms/delete/${roomId}`, {
             method: 'DELETE',
             mode: 'cors',
             headers: {
@@ -147,8 +130,6 @@ class ApiService {
             },
         })
         console.log(results);
-        // const data = await results.json()
-        // return data[0]
     }
 
 

@@ -21,7 +21,11 @@ import brazilFlag from "../../../assests/flags/brazil.png";
 import italyFlag from "../../../assests/flags/italy.png";
 import netherlandsFlag from "../../../assests/flags/netherlands.png";
 import chinaFlag from "../../../assests/flags/china.png";
-import GoogleRegister from "../GoogleSignIn/GoogleRegister";
+import russiaFlag from "../../../assests/flags/russia.png";
+import polandFlag from "../../../assests/flags/poland.png";
+import koreaFlag from "../../../assests/flags/korea.png";
+import vientamFlag from "../../../assests/flags/vietnam.png";
+import saudi_arabiaFlag from "../../../assests/flags/saudi_arabia.png";
 
 export default function Register() {
   const {
@@ -34,17 +38,21 @@ export default function Register() {
   const [newLanguage, setNewLanguage] = useState();
   const smallScreen = window.matchMedia("(max-width: 1000px)").matches;
 
-  const languages = [
-    { label: "Hebrew", value: "he", img: israelFlag },
-    { label: "English", value: "en", img: USAFlag },
-    { label: "France", value: "fr", img: franceFlag },
-    { label: "Espaniol", value: "es", img: spainFlag },
-    { label: "Italian", value: "it", img: italyFlag },
-    { label: "Português", value: "pt", img: brazilFlag },
-    { label: "普通话", value: "cmn", img: chinaFlag },
-    { label: "Dutch", value: "nl", img: netherlandsFlag },
-  ];
-
+ const languages = [
+  { label: "English", value: "en", img: USAFlag },
+  { label: "Hebrew", value: "he", img: israelFlag },
+  { label: "France", value: "fr", img: franceFlag },
+  { label: "Espaniol", value: "es", img: spainFlag },
+  { label: "Italian", value: "it", img: italyFlag },
+  { label: "Português", value: "pt", img: brazilFlag },
+  { label: "Arabic", value: "ar", img: saudi_arabiaFlag },
+  { label: "Russian", value: "ru", img: russiaFlag },
+  { label: "普通话", value: "cmn", img: chinaFlag },
+  { label: "Dutch", value: "nl", img: netherlandsFlag },
+  { label: "Polish", value: "pl", img: polandFlag },
+  { label: "Korean", value: "ko", img: koreaFlag },
+  { label: "Vietnamese", value: "vi", img: vientamFlag },
+];
   async function userRegister(user) {
     user.language = newLanguage;
     try {

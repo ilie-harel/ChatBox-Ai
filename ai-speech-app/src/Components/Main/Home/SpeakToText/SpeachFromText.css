@@ -3,11 +3,11 @@
     height: 100%;
 }
 
-.directionHe {
+.directionRtl {
     direction: rtl;
 }
 
-.directionEn {
+.directionLtr {
     direction: ltr;
 }
 
