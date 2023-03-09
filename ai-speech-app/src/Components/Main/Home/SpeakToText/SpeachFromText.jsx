@@ -27,8 +27,10 @@ function SpeechFromText() {
     const [isChangedRoom, setIsChangedRoom] = useState(false);
     const [audioSource, setAudioSource] = useState(null);
     const dispatch = useDispatch();
+  
 
     useEffect(() => {
+
         if (!browserSupportsSpeechRecognition) {
             return <span>Your Browser doesnt support speech to text</span>
         }

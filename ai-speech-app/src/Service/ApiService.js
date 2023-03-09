@@ -1,6 +1,5 @@
 import axios from 'axios'
-import { GOOGLE_KEY } from './config';
-export const BASE_URL ='http://localhost:3046';
+const BASE_URL = process.env.REACT_APP_BASE_URL
 
 function getToken() {
     const token = localStorage.getItem('ChatBoxToken');
@@ -137,6 +136,7 @@ class ApiService {
     // voices
 
     async googleVoices() {
+        const GOOGLE_KEY = process.env.REACT_APP_GOOGLE_KEY
         const voices = await fetch(`https://texttospeech.googleapis.com/v1/voices?key=${GOOGLE_KEY}`, {
         })
         const data = voices.json();
@@ -145,6 +145,7 @@ class ApiService {
     }
 
     async getEncodedAudioGoogle(request) {
+        const GOOGLE_KEY = process.env.REACT_APP_GOOGLE_KEY
         const response = await fetch(`https://texttospeech.googleapis.com/v1/text:synthesize?key=${GOOGLE_KEY}`, {
             method: 'POST',
             headers: {

@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import Main from "../src/Components/Main/Main"
 import LandingPage from './Components/LandingPage/LandingPage';
@@ -8,8 +7,9 @@ import { useSelector } from 'react-redux';
 
 function App() {
   const authSlice = useSelector((state) => state.auth);
-  const overlaySelector = useSelector((state) => state.overlay)
+  const overlaySelector = useSelector((state) => state.overlay);
 
+ 
   return (
     <div className="App">
        {overlaySelector?
